@@ -29,16 +29,9 @@ button,input,select{font:inherit}button,a,label,input,select{-webkit-tap-highlig
 </details><p class="closing-note">Bạn có quyền không trả lời. Bảng hỏi không được theo dõi trực tiếp để hỗ trợ tình huống khẩn cấp.</p></footer>
 </div>
 <script>'use strict';
-/* EDIT ONLY THIS CONFIGURATION before deploying. No private keys belong here. */
+/* Generated deployment configuration comes from study.config.json via npm run release. */
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpU8_u6TCwG-MU6qGi-D5VIc2j-znVk_7l7ki7L5CD2ChGwde1gOlsen8ltOIPBlQ5OA/exec";
-const STUDY = Object.freeze({
-  researcher: "",           // Name of responsible researcher / study group.
-  institution: "",          // Institution OR an accurate description of independent research.
-  contactEmail: "",         // A working public research contact address.
-  dataAccess: "",           // Who can access the private Google Sheet?
-  retention: "",            // Actual retention period and planned deletion policy.
-  ethicsInfo: ""            // Actual approval / review information; NEVER invent approval.
-});
+const STUDY = Object.freeze({"researcher":"Đỗ Thành Đạt","institution":"Trường Đại học Ngoại thương","contactEmail":"thahdtftu05@gmail.com","dataAccess":"Chỉ Đỗ Thành Đạt được xem dữ liệu khảo sát.","retention":"Dữ liệu được lưu trong 2 tháng. Bạn có thể yêu cầu xóa phiếu bằng cách gửi email đến thahdtftu05@gmail.com và cung cấp mã phiếu.","ethicsInfo":"Tình trạng thẩm định/phê duyệt: chưa quyết định."});
 /* The questionnaire is a DRAFT FOR PILOT, not a validated Vietnamese instrument. */
 const BANK = {"version":"bts-pilot-v3.0.0","validationStatus":"NOT_VALIDATED_VI","studyMode":"PILOT","consentVersion":"consent-v3.0","background":[{"id":"AGE","text":"Bạn bao nhiêu tuổi?","type":"choice","options":[["under18","Dưới 18 tuổi"],[18,"18 tuổi"],[19,"19 tuổi"],[20,"20 tuổi"],[21,"21 tuổi"],[22,"22 tuổi"],[23,"23 tuổi"],[24,"24 tuổi"],[25,"25 tuổi"],[26,"26 tuổi"],[27,"27 tuổi"],[28,"28 tuổi"],[29,"29 tuổi"],[30,"30 tuổi"],["over30","Trên 30 tuổi"]],"required":true,"typeOverride":"select","group":"screening"},{"id":"RESIDENCE_VN","text":"Hiện bạn có đang sinh sống tại Việt Nam không?","type":"choice","options":[["yes","Có"],["no","Không"]],"required":true,"group":"screening"},{"id":"EXPERIENCE_12M","text":"Trong 12 tháng qua, bạn có giao tiếp qua lại với ít nhất một người trong bối cảnh tìm hiểu hoặc quan hệ tình cảm không?","type":"choice","options":[["yes","Có"],["no","Không"],["unsure","Không chắc"]],"required":true,"group":"screening"},{"id":"GENDER","text":"Bạn mô tả giới tính của mình như thế nào?","type":"choice","options":[["woman","Nữ"],["man","Nam"],["other","Khác"],["SKIP","Không muốn trả lời"]],"required":false,"group":"background"},{"id":"CURRENT_STATUS","text":"Tình trạng quan hệ tình cảm hiện tại của bạn là gì?","type":"choice","options":[["single","Hiện không trong một mối quan hệ"],["dating","Đang tìm hiểu / hẹn hò, chưa xác định cam kết"],["partnered","Đang trong một mối quan hệ có cam kết"],["married","Đã kết hôn"],["other","Khác"],["SKIP","Không muốn trả lời"]],"required":false,"group":"background"},{"id":"FOCAL_STATUS","text":"Hiện trạng giữa bạn và người vừa chọn là gì?","type":"choice","options":[["ongoing_dating","Vẫn đang tìm hiểu / hẹn hò"],["ongoing_partner","Vẫn là người yêu / bạn đời"],["ended","Đã kết thúc việc tìm hiểu hoặc quan hệ"],["unclear","Chưa rõ đã kết thúc hay chưa"]],"required":true,"group":"context"},{"id":"DURATION","text":"Giai đoạn tìm hiểu / quan hệ với người này kéo dài bao lâu?","type":"choice","options":[["under1m","Dưới 1 tháng"],["1to3m","Từ 1 đến dưới 3 tháng"],["3to6m","Từ 3 đến dưới 6 tháng"],["6to12m","Từ 6 đến dưới 12 tháng"],["1to2y","Từ 1 đến dưới 2 năm"],["2yplus","Từ 2 năm trở lên"],["NA","Không nhớ rõ"],["SKIP","Không muốn trả lời"]],"required":false,"group":"context"},{"id":"LAST_CONTACT","text":"Lần gần nhất hai người trực tiếp trao đổi với nhau là khi nào?","type":"choice","options":[["7d","Trong 7 ngày qua"],["8to30d","Từ 8 đến 30 ngày trước"],["1to3m","Trên 1 đến 3 tháng trước"],["3to6m","Trên 3 đến 6 tháng trước"],["6to12m","Trên 6 đến 12 tháng trước"],["NA","Không nhớ rõ"],["SKIP","Không muốn trả lời"]],"required":false,"group":"context"},{"id":"MAIN_CHANNEL","text":"Trong 12 tháng qua, hai người chủ yếu giao tiếp theo cách nào?","type":"choice","options":[["online","Chủ yếu qua tin nhắn, cuộc gọi hoặc mạng xã hội"],["mixed","Qua mạng và gặp trực tiếp ở mức tương đương"],["offline","Chủ yếu gặp trực tiếp"],["SKIP","Không muốn trả lời"]],"required":false,"group":"context"},{"id":"EXCLUSIVITY","text":"Trong giai đoạn được nhắc đến, hai người có thống nhất việc chỉ hẹn hò / có quan hệ tình cảm với nhau không?","type":"choice","options":[["yes","Có thống nhất"],["no","Không có thống nhất"],["unsure","Không rõ"],["SKIP","Không muốn trả lời"]],"required":false,"group":"context"},{"id":"END_RECENCY","text":"Việc tìm hiểu / quan hệ với người này đã kết thúc cách đây bao lâu?","type":"choice","options":[["under1m","Dưới 1 tháng"],["1to3m","Từ 1 đến dưới 3 tháng"],["3to6m","Từ 3 đến dưới 6 tháng"],["6to12m","Từ 6 đến 12 tháng"],["over12m","Trên 12 tháng trước"],["NA","Không nhớ rõ"],["SKIP","Không muốn trả lời"]],"required":false,"group":"context","showIf":["FOCAL_STATUS","ended"]},{"id":"END_INITIATOR","text":"Ai là người chủ động kết thúc việc tìm hiểu / quan hệ?","type":"choice","options":[["self","Tôi"],["other","Người ấy"],["mutual","Cả hai cùng thống nhất"],["unclear","Không có quyết định kết thúc rõ ràng"],["SKIP","Không muốn trả lời"]],"required":false,"group":"context","showIf":["FOCAL_STATUS","ended"]}],"items":[{"id":"BR01","text":"Người ấy chuyển từ thể hiện sự quan tâm tình cảm rõ rệt sang ít hoặc không liên lạc, rồi lại thể hiện sự quan tâm.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Sự quan tâm gián đoạn"},{"id":"BR02","text":"Sau một thời gian im lặng, người ấy lại chủ động liên lạc với tôi bằng những lời lẽ hoặc cử chỉ mang tính tán tỉnh.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Quay lại tương tác tình cảm"},{"id":"BR03","text":"Người ấy nói về những điều hai người có thể làm cùng nhau trong tương lai nhưng không thực hiện những điều đã nói.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Khoảng cách lời nói – hành động"},{"id":"BR04","text":"Khi tôi hỏi về việc phát triển mối quan hệ, người ấy trả lời lấp lửng thay vì cho biết rõ mong muốn của mình.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Không làm rõ định hướng quan hệ"},{"id":"BR05","text":"Người ấy gợi ý gặp gỡ riêng với tôi nhưng không cùng tôi thống nhất một kế hoạch cụ thể.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Đề xuất không được cụ thể hóa"},{"id":"BR06","text":"Người ấy gửi cho tôi những tín hiệu quan tâm ngắn qua mạng nhưng không tiếp tục cuộc trò chuyện khi tôi đáp lại.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Tương tác ít đầu tư"},{"id":"BR07","text":"Khi tôi ngừng chủ động liên lạc, người ấy lại tìm cách thu hút sự chú ý tình cảm của tôi.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Nối lại chú ý khi người nhận rút lui"},{"id":"BR08","text":"Người ấy tiếp tục thể hiện sự quan tâm mang tính tình cảm trong khi trì hoãn việc trả lời liệu hai người có đang tìm hiểu nhau hay không.","group":"br","scale":"br","instrument":"BRC-DEV8","status":"new_item_pool_unvalidated","domain":"Duy trì tín hiệu nhưng trì hoãn làm rõ"},{"id":"RS01_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người thân có muốn giúp mình hay không?","scenario":"Bạn hỏi vay cha mẹ hoặc một người thân để vượt qua giai đoạn khó khăn về tài chính.","scenarioIndex":1,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"1a","sensitive":false},{"id":"RS01_B","text":"Bạn nghĩ khả năng người thân đồng ý giúp trong khả năng của họ là bao nhiêu?","scenario":"Bạn hỏi vay cha mẹ hoặc một người thân để vượt qua giai đoạn khó khăn về tài chính.","scenarioIndex":1,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"1b","sensitive":false},{"id":"RS02_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người bạn đó có muốn nói chuyện với mình hay không?","scenario":"Bạn chủ động nói chuyện với một người bạn thân sau khi đã làm hoặc nói điều khiến họ rất buồn hoặc tức giận.","scenarioIndex":2,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"2a","sensitive":false},{"id":"RS02_B","text":"Bạn nghĩ khả năng người bạn đó muốn nói chuyện để cùng giải quyết vấn đề là bao nhiêu?","scenario":"Bạn chủ động nói chuyện với một người bạn thân sau khi đã làm hoặc nói điều khiến họ rất buồn hoặc tức giận.","scenarioIndex":2,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"2b","sensitive":false},{"id":"RS03_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về phản ứng của người yêu?","scenario":"Bạn trao đổi với người yêu về việc sử dụng biện pháp bảo vệ khi quan hệ tình dục và cho họ biết bạn coi điều đó quan trọng như thế nào.","scenarioIndex":3,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"3a","sensitive":true},{"id":"RS03_B","text":"Bạn nghĩ khả năng người yêu sẵn sàng thảo luận về các lựa chọn mà không phản ứng phòng thủ là bao nhiêu?","scenario":"Bạn trao đổi với người yêu về việc sử dụng biện pháp bảo vệ khi quan hệ tình dục và cho họ biết bạn coi điều đó quan trọng như thế nào.","scenarioIndex":3,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"3b","sensitive":true},{"id":"RS04_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người quản lý có muốn giúp mình hay không?","scenario":"Bạn nhờ người quản lý trực tiếp giúp giải quyết một vấn đề mình đang gặp trong công việc.","scenarioIndex":4,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"4a","sensitive":false},{"id":"RS04_B","text":"Bạn nghĩ khả năng người quản lý muốn cố gắng giúp mình là bao nhiêu?","scenario":"Bạn nhờ người quản lý trực tiếp giúp giải quyết một vấn đề mình đang gặp trong công việc.","scenarioIndex":4,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"4b","sensitive":false},{"id":"RS05_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người yêu có muốn làm hòa với mình hay không?","scenario":"Sau một cuộc cãi vã gay gắt, bạn gọi điện hoặc tìm gặp người yêu vì muốn làm hòa.","scenarioIndex":5,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"5a","sensitive":false},{"id":"RS05_B","text":"Bạn nghĩ khả năng người yêu mong muốn làm hòa ít nhất cũng nhiều như bạn là bao nhiêu?","scenario":"Sau một cuộc cãi vã gay gắt, bạn gọi điện hoặc tìm gặp người yêu vì muốn làm hòa.","scenarioIndex":5,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"5b","sensitive":false},{"id":"RS06_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc họ có muốn đến hay không?","scenario":"Bạn mời cha mẹ hoặc người thân đến dự một dịp quan trọng với mình.","scenarioIndex":6,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"6a","sensitive":false},{"id":"RS06_B","text":"Bạn nghĩ khả năng họ muốn đến tham dự là bao nhiêu?","scenario":"Bạn mời cha mẹ hoặc người thân đến dự một dịp quan trọng với mình.","scenarioIndex":6,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"6b","sensitive":false},{"id":"RS07_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người đó có muốn nói chuyện với mình hay không?","scenario":"Tại một buổi tiệc, bạn để ý thấy một người ở phía bên kia căn phòng mà mình muốn làm quen, rồi đến bắt chuyện với họ.","scenarioIndex":7,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"7a","sensitive":false},{"id":"RS07_B","text":"Bạn nghĩ khả năng người đó muốn nói chuyện với mình là bao nhiêu?","scenario":"Tại một buổi tiệc, bạn để ý thấy một người ở phía bên kia căn phòng mà mình muốn làm quen, rồi đến bắt chuyện với họ.","scenarioIndex":7,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"7b","sensitive":false},{"id":"RS08_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người yêu còn yêu và muốn ở bên mình hay không?","scenario":"Gần đây, bạn nhận thấy có khoảng cách giữa mình và người yêu, nên hỏi họ xem có chuyện gì không ổn hay không.","scenarioIndex":8,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"8a","sensitive":false},{"id":"RS08_B","text":"Bạn nghĩ khả năng người yêu thể hiện tình yêu chân thành và sự cam kết với mối quan hệ, bất kể những chuyện khác đang xảy ra, là bao nhiêu?","scenario":"Gần đây, bạn nhận thấy có khoảng cách giữa mình và người yêu, nên hỏi họ xem có chuyện gì không ổn hay không.","scenarioIndex":8,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"8b","sensitive":false},{"id":"RS09_A","text":"Bạn sẽ lo ngại hoặc lo âu đến mức nào về việc người bạn đó có muốn lắng nghe hay không?","scenario":"Bạn gọi cho một người bạn khi đang có điều bận tâm mà mình thực sự cần chia sẻ.","scenarioIndex":9,"group":"rs","scale":"rsa","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"9a","sensitive":false},{"id":"RS09_B","text":"Bạn nghĩ khả năng người bạn đó lắng nghe và hỗ trợ mình là bao nhiêu?","scenario":"Bạn gọi cho một người bạn khi đang có điều bận tâm mà mình thực sự cần chia sẻ.","scenarioIndex":9,"group":"rs","scale":"rsb","instrument":"A-RSQ","status":"vi_translation_draft","originalItem":"9b","sensitive":false},{"id":"ED01","text":"Tôi cảm thấy không có chỗ dựa khi ở một mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":1,"domain":"so_co_don","sensitive":false},{"id":"ED02","text":"Tôi lo lắng khi nghĩ đến việc bị người ấy bỏ rơi.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":2,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED03","text":"Để thu hút người ấy, tôi tìm cách gây ấn tượng hoặc làm người ấy vui.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":3,"domain":"tim_kiem_chu_y","sensitive":false},{"id":"ED04","text":"Tôi làm mọi cách để trở thành trung tâm chú ý trong cuộc sống của người ấy.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":4,"domain":"tim_kiem_chu_y","sensitive":false},{"id":"ED05","text":"Tôi liên tục cần người ấy thể hiện tình cảm với mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":5,"domain":"can_bieu_lo_tinh_cam","sensitive":false},{"id":"ED06","text":"Nếu người ấy không gọi hoặc không đến đúng giờ đã hẹn, tôi lo lắng khi nghĩ rằng người ấy đang giận mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":6,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED07","text":"Khi người ấy phải vắng mặt vài ngày, tôi cảm thấy lo âu.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":7,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED08","text":"Khi tranh cãi với người ấy, tôi lo rằng người ấy sẽ không còn yêu mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":8,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED09","text":"Tôi đã từng dọa tự làm hại bản thân để người ấy không rời bỏ mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":9,"domain":"bieu_hien_cuc_doan","sensitive":true},{"id":"ED10","text":"Tôi là người cần được nương tựa và yếu đuối.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":10,"domain":"bieu_hien_cuc_doan","sensitive":false},{"id":"ED11","text":"Tôi cần người ấy bộc lộ tình cảm với mình ở mức quá nhiều.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":11,"domain":"can_bieu_lo_tinh_cam","sensitive":false},{"id":"ED12","text":"Tôi cần có một người mà đối với họ, tôi đặc biệt hơn những người khác.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":12,"domain":"can_bieu_lo_tinh_cam","sensitive":false},{"id":"ED13","text":"Khi tranh cãi với người ấy, tôi cảm thấy trống rỗng.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":13,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED14","text":"Tôi cảm thấy rất tệ nếu người ấy không liên tục thể hiện tình cảm với mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":14,"domain":"can_bieu_lo_tinh_cam","sensitive":false},{"id":"ED15","text":"Tôi sợ người ấy bỏ rơi mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":15,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED16","text":"Nếu người ấy rủ làm một việc gì đó, tôi bỏ tất cả những hoạt động đang có để ở bên người ấy.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":16,"domain":"thay_doi_ke_hoach","sensitive":false},{"id":"ED17","text":"Nếu không biết người ấy đang ở đâu, tôi cảm thấy bất an.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":17,"domain":"lo_au_chia_ly","sensitive":false},{"id":"ED18","text":"Tôi có cảm giác trống rỗng mạnh mẽ khi ở một mình.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":18,"domain":"so_co_don","sensitive":false},{"id":"ED19","text":"Tôi không chịu đựng được sự cô đơn.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":19,"domain":"so_co_don","sensitive":false},{"id":"ED20","text":"Tôi có thể làm những việc liều lĩnh, thậm chí mạo hiểm tính mạng, để giữ tình yêu của người ấy.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":20,"domain":"bieu_hien_cuc_doan","sensitive":true},{"id":"ED21","text":"Nếu tôi đã có kế hoạch mà người ấy xuất hiện, tôi thay đổi kế hoạch chỉ để được ở bên người ấy.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":21,"domain":"thay_doi_ke_hoach","sensitive":false},{"id":"ED22","text":"Tôi xa cách bạn bè quá nhiều khi đang trong một mối quan hệ tình cảm.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":22,"domain":"thay_doi_ke_hoach","sensitive":false},{"id":"ED23","text":"Tôi chỉ cảm thấy vui khi ở bên người ấy.","group":"ed","scale":"ed","instrument":"CDE-23","status":"vi_translation_focal_adaptation_draft","originalItem":23,"domain":"thay_doi_ke_hoach","sensitive":false}],"quality":[{"id":"QC_REFERENCE","text":"Ở phần trải nghiệm giao tiếp và cảm nhận tình cảm, bạn có nghĩ về cùng một người theo hướng dẫn không?","type":"choice","options":[["yes","Có"],["no","Không, có lúc tôi nghĩ đến người khác"],["unsure","Không chắc"],["SKIP","Không muốn trả lời"]],"required":false,"group":"quality"}],"scales":{"br":[[1,"Không bao giờ"],[2,"Hiếm khi"],[3,"Thỉnh thoảng"],[4,"Thường xuyên"],[5,"Rất thường xuyên"]],"rsa":[[1,"Rất ít lo ngại"],[2,"2"],[3,"3"],[4,"4"],[5,"5"],[6,"Rất lo ngại"]],"rsb":[[1,"Rất khó xảy ra"],[2,"2"],[3,"3"],[4,"4"],[5,"5"],[6,"Rất dễ xảy ra"]],"ed":[[1,"Hoàn toàn không đúng với tôi"],[2,"Phần lớn không đúng với tôi"],[3,"Đúng nhiều hơn sai một chút"],[4,"Đúng với tôi ở mức vừa phải"],[5,"Phần lớn đúng với tôi"],[6,"Mô tả tôi hoàn toàn"]]},"cdeSubscales":{"lo_au_chia_ly":[2,6,7,8,13,15,17],"can_bieu_lo_tinh_cam":[5,11,12,14],"thay_doi_ke_hoach":[16,21,22,23],"so_co_don":[1,18,19],"bieu_hien_cuc_doan":[9,10,20],"tim_kiem_chu_y":[3,4]}};
 const allFields = [...BANK.background, ...BANK.items, ...BANK.quality];
@@ -47,6 +40,7 @@ const coreIds = BANK.items.map(q => q.id);
 const isLive = SCRIPT_URL.trim() !== '';
 const answers = Object.create(null);
 const state = {page:0, agreed:false, phase:'survey', sending:false, error:'',
+  serverStatus:'pending', serverCode:'', healthChecking:false, hasAttempted:false,
   startedAt:null, consentAt:null, submission:null, lastResult:null};
 const app = document.querySelector('#app');
 const pages = [
@@ -104,6 +98,22 @@ function configProblems(){
  return list;
 }
 function displayConfig(k){return STUDY[k] ? esc(STUDY[k]) : '<em>Chưa cấu hình — chỉ xem thử.</em>';}
+function serverMessage(){
+ if(state.healthChecking)return 'Đang kiểm tra kết nối với nơi lưu câu trả lời…';
+ if(state.serverStatus==='ready')return 'Kết nối đã sẵn sàng. Bạn có thể bắt đầu khảo sát.';
+ if(state.serverStatus==='closed')return 'Khảo sát đang tạm đóng. Vui lòng quay lại sau hoặc liên hệ nhóm nghiên cứu.';
+ if(state.serverCode==='SCHEMA_MISMATCH')return 'Phiên bản website và máy chủ chưa khớp. Vui lòng liên hệ nhóm nghiên cứu.';
+ if(state.serverStatus==='unavailable')return 'Chưa kết nối được nơi lưu câu trả lời. Hãy kiểm tra mạng rồi thử lại; nếu vẫn lỗi, liên hệ nhóm nghiên cứu.';
+ return 'Kết nối với nơi lưu câu trả lời sẽ được kiểm tra trước khi bắt đầu.';
+}
+async function checkServer(){
+ state.healthChecking=true;
+ if(state.page===0)render(false);
+ const result=await getHealth();
+ state.healthChecking=false;state.serverStatus=result.status;state.serverCode=result.code||'';
+ if(state.page===0)render(false);
+ return result.status==='ready';
+}
 function chooseHtml(q,options,extraClass=''){
  return `<div class="options ${extraClass}">${options.map(([value,label])=>{
   const chosen=answers[q.id]===value;
@@ -130,7 +140,7 @@ function progressHtml(){return `<div class="progress-label"><span>Bước ${Stri
 function render(focus=true){
  document.querySelector('#mode-badge').textContent=isLive?'KHẢO SÁT THỬ':'XEM THỬ · KHÔNG LƯU';
  if(state.phase==='success'||state.phase==='previewdone'||state.phase==='ineligible'||state.phase==='withdrawn'){renderEnd();return;}
- if(state.phase==='sending'||state.phase==='uncertain'||state.phase==='rejected'){renderSending();return;}
+  if(['sending','uncertain','rejected','connectionfailed'].includes(state.phase)){renderSending();return;}
  if(state.page===0){
   const problems=configProblems();
   app.innerHTML=`<section class="hero"><div class="kicker">Nghiên cứu về trải nghiệm tình cảm</div><div class="eclipse" aria-hidden="true"></div><h1 id="screen-title" tabindex="-1">BEYOND<br>THE SIGNALS</h1><p>Mỗi kết nối có một câu chuyện.<br>Khảo sát về giao tiếp và cảm nhận trong quan hệ tình cảm ở người trẻ.</p><div class="metadata"><span>18–30 tuổi</span><span>Tiếng Việt</span><span>Tham gia tự nguyện</span></div></section>
@@ -147,9 +157,16 @@ function render(focus=true){
   <dl><dt>Người / nhóm phụ trách</dt><dd>${displayConfig('researcher')}</dd><dt>Đơn vị hoặc tư cách nghiên cứu</dt><dd>${displayConfig('institution')}</dd><dt>Liên hệ</dt><dd>${displayConfig('contactEmail')}</dd><dt>Người được truy cập dữ liệu</dt><dd>${displayConfig('dataAccess')}</dd><dt>Lưu giữ và hủy dữ liệu</dt><dd>${displayConfig('retention')}</dd><dt>Thông tin thẩm định / phê duyệt</dt><dd>${displayConfig('ethicsInfo')}</dd></dl>
   <p>Nếu nội dung khiến bạn khó chịu, bạn có thể dừng lại và tìm sự hỗ trợ từ người tin cậy hoặc cơ sở chuyên môn. Không dùng bảng hỏi này để gửi yêu cầu trợ giúp khẩn cấp.</p></details>
   <label class="consent"><input type="checkbox" id="agree" ${state.agreed?'checked':''}><span>Tôi đã đọc thông tin trên, hiểu quyền lựa chọn của mình và tự nguyện đồng ý tham gia bản khảo sát thử.</span></label></section>
-  <div class="actions center-actions"><button class="button primary" id="start" ${!state.agreed||problems.length?'disabled':''}>Bắt đầu khảo sát <span aria-hidden="true">→</span></button></div>`;
-  document.querySelector('#agree').addEventListener('change',e=>{state.agreed=e.target.checked;document.querySelector('#start').disabled=!state.agreed||problems.length>0;});
-  document.querySelector('#start').addEventListener('click',()=>{if(!state.agreed||configProblems().length)return;state.startedAt=Date.now();state.consentAt=new Date().toISOString();state.page=1;render();});
+   ${isLive&&!problems.length?`<div class="notice" id="service-status" role="status" aria-live="polite">${esc(serverMessage())}</div>`:''}
+   <div class="actions center-actions"><button class="button primary" id="start" ${!state.agreed||problems.length||state.healthChecking?'disabled':''}>${state.healthChecking?'Đang kiểm tra…':'Bắt đầu khảo sát'} <span aria-hidden="true">→</span></button></div>`;
+   document.querySelector('#agree').addEventListener('change',e=>{state.agreed=e.target.checked;document.querySelector('#start').disabled=!state.agreed||problems.length>0||state.healthChecking;});
+   document.querySelector('#start').addEventListener('click',async()=>{
+    if(!state.agreed||state.healthChecking||configProblems().length)return;
+    if(isLive && !await checkServer())return;
+    if(!state.agreed)return;
+    if(!state.startedAt){state.startedAt=Date.now();state.consentAt=new Date().toISOString();}
+    state.page=1;render();
+   });
  }else{
   const page=pages[state.page-1];
   let html=progressHtml()+`<div class="kicker">${esc(page.eyebrow)}</div><h2 id="screen-title" tabindex="-1">${esc(page.title)}</h2><p class="section-lead">${esc(page.description)}</p>`;
@@ -182,7 +199,7 @@ function render(focus=true){
  }
  if(focus && state.page>0){document.querySelector('#screen-title')?.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
 }
-function clearAnswers(){for(const key of Object.keys(answers))delete answers[key];state.submission=null;}
+function clearAnswers(){for(const key of Object.keys(answers))delete answers[key];state.submission=null;state.hasAttempted=false;}
 function randomHex(bytes){
  if(!window.crypto?.getRandomValues)throw new Error('SECURE_CONTEXT_REQUIRED');
  const data=new Uint8Array(bytes);window.crypto.getRandomValues(data);return Array.from(data,b=>b.toString(16).padStart(2,'0')).join('');
@@ -194,6 +211,25 @@ function buildSubmission(){
   submissionId:randomHex(16),receiptToken:randomHex(32),consent:true,consentAt:state.consentAt,
   elapsedSeconds:Math.max(0,Math.round((Date.now()-state.startedAt)/1000)),
   edReferenceMode:answers.FOCAL_STATUS==='ended'?'retrospective':'current',answers:normalized};
+}
+function getHealth(){
+ return new Promise(resolve=>{
+  let name;try{name='bts_health_'+randomHex(16);}catch(_){resolve({status:'unavailable',code:'SECURE_CONTEXT_REQUIRED'});return;}
+  const script=document.createElement('script');let timer;let finished=false;
+  const finish=result=>{if(finished)return;finished=true;clearTimeout(timer);script.remove();
+   window[name]=()=>{};setTimeout(()=>{delete window[name];},15000);resolve(result);};
+  window[name]=value=>{
+   if(!value||value.service!=='Beyond the Signals'||value.version!==BANK.version||value.consentVersion!==BANK.consentVersion){finish({status:'unavailable',code:'SCHEMA_MISMATCH'});return;}
+   if(value.status==='ready'&&value.collectionEnabled===true&&value.storageReady===true){finish({status:'ready'});return;}
+   if(value.status==='closed'&&value.collectionEnabled===false){finish({status:'closed',code:'COLLECTION_CLOSED'});return;}
+   finish({status:'unavailable',code:value.code==='SCHEMA_MISMATCH'?'SCHEMA_MISMATCH':'CONFIGURATION_ERROR'});
+  };
+  try{
+   const url=new URL(SCRIPT_URL.trim());url.searchParams.set('action','health');url.searchParams.set('callback',name);url.searchParams.set('_',String(Date.now()));
+   script.src=url.href;script.referrerPolicy='no-referrer';script.onerror=()=>finish({status:'unavailable',code:'NETWORK_ERROR'});
+   timer=setTimeout(()=>finish({status:'unavailable',code:'NETWORK_ERROR'}),10000);document.head.appendChild(script);
+  }catch(_){finish({status:'unavailable',code:'CONFIGURATION_ERROR'});}
+ });
 }
 function getReceipt(payload){
  return new Promise(resolve=>{
@@ -213,6 +249,11 @@ function getReceipt(payload){
  });
 }
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function confirmSaved(receipt,payload){
+ state.lastResult=receipt;state.sending=false;state.phase='success';
+ for(const key of Object.keys(answers))delete answers[key];
+ state.submission={submissionId:payload.submissionId};render();
+}
 async function submit(){
  if(state.sending)return;
  if(!isLive){state.phase='previewdone';clearAnswers();render();return;}
@@ -220,9 +261,23 @@ async function submit(){
  try{if(!state.submission)state.submission=buildSubmission();}catch(e){state.error='Trình duyệt chưa hỗ trợ tạo mã phiếu an toàn. Vui lòng dùng trình duyệt cập nhật trên đường dẫn HTTPS.';render();return;}
  state.phase='sending';state.sending=true;state.lastResult=null;render();
  const payload=state.submission;
+  if(state.hasAttempted){
+   try{
+    const prior=await getReceipt(payload);
+    if(prior?.status==='saved'){confirmSaved(prior,payload);return;}
+    if(prior?.status==='rejected'&&prior.code==='ID_CONFLICT'){
+     state.lastResult=prior;state.sending=false;state.phase='rejected';render();return;
+    }
+   }catch(_){/* Continue with a health check while retaining this exact payload. */}
+  }
+  const health=await getHealth();state.serverStatus=health.status;state.serverCode=health.code||'';
+  if(health.status!=='ready'){
+   state.lastResult={code:health.code};state.sending=false;state.phase='connectionfailed';render();return;
+  }
  const form=new URLSearchParams({payload:JSON.stringify(payload)});
  const controller=new AbortController();const postTimer=setTimeout(()=>controller.abort(),25000);
  // An opaque POST response never implies a successful save. Only the receipt below does.
+  state.hasAttempted=true;
  fetch(SCRIPT_URL.trim(),{method:'POST',mode:'no-cors',credentials:'omit',body:form,signal:controller.signal,redirect:'follow',referrerPolicy:'no-referrer'}).catch(()=>{}).finally(()=>clearTimeout(postTimer));
  const deadline=Date.now()+60000;
  await sleep(1800);
@@ -230,9 +285,7 @@ async function submit(){
   while(Date.now()<deadline){
    const receipt=await getReceipt(payload);
    if(receipt?.status==='saved'){
-    state.lastResult=receipt;state.sending=false;state.phase='success';
-    for(const key of Object.keys(answers))delete answers[key];
-    state.submission={submissionId:payload.submissionId};render();return;
+     confirmSaved(receipt,payload);return;
    }
    if(receipt?.status==='rejected'){
     state.lastResult=receipt;state.sending=false;state.phase='rejected';render();return;
@@ -243,9 +296,10 @@ async function submit(){
  state.sending=false;state.phase='uncertain';render();
 }
 function renderSending(){
- const busy=state.phase==='sending';const rejected=state.phase==='rejected';
+ const busy=state.phase==='sending';const rejected=state.phase==='rejected';const connectionFailed=state.phase==='connectionfailed';
  const reasons={COLLECTION_CLOSED:'Nhóm nghiên cứu đang tạm đóng thu thập dữ liệu.',INVALID_PAYLOAD:'Máy chủ chưa chấp nhận dữ liệu. Vui lòng báo cho nhóm nghiên cứu.',SCHEMA_MISMATCH:'Phiên bản website và Apps Script chưa khớp. Vui lòng báo cho nhóm nghiên cứu.',ID_CONFLICT:'Có xung đột mã phiếu. Vui lòng liên hệ nhóm nghiên cứu; không tạo một phiếu mới ngay.',CONFIGURATION_ERROR:'Cấu hình Google Sheets chưa sẵn sàng. Vui lòng báo cho nhóm nghiên cứu.',SERVER_ERROR:'Máy chủ gặp lỗi tạm thời. Bạn có thể thử gửi lại cùng phiếu.'};
- app.innerHTML=`<section class="completion"><div class="kicker">${busy?'Đang xác nhận từ máy chủ':'Trạng thái gửi phiếu'}</div>${busy?'<div class="spinner" role="status" aria-label="Đang gửi"></div>':'<div class="symbol" aria-hidden="true">○</div>'}<h2 id="screen-title" tabindex="-1">${busy?'Một chút nữa thôi.':rejected?'Chưa thể hoàn tất.':'Chưa nhận được xác nhận.'}</h2><p>${busy?'Câu trả lời đang được gửi. Màn hình chỉ thông báo đã lưu khi nhận được xác nhận tương ứng từ Google Sheets.':rejected?esc(reasons[state.lastResult?.code]||'Máy chủ chưa chấp nhận phiếu. Vui lòng liên hệ nhóm nghiên cứu.'):'Kết nối có thể chậm hoặc máy chủ chưa phản hồi. Dữ liệu có thể đã được lưu; đừng làm một phiếu mới. Thử lại sẽ dùng nguyên mã phiếu để tránh ghi trùng.'}</p><p class="hint">Giữ trang này mở để không mất khả năng gửi lại cùng phiếu. Không có câu trả lời nào được hiển thị công khai.</p>${!busy?'<div class="actions center-actions"><button class="button primary" id="retry">Kiểm tra / gửi lại cùng phiếu</button></div>':''}<p class="hint">Liên hệ nghiên cứu: ${displayConfig('contactEmail')}</p></section>`;
+ const message=busy?'Đang kiểm tra kết nối, gửi phiếu và chờ xác nhận. Chỉ khi máy chủ xác nhận đã lưu, khảo sát mới hoàn tất.':connectionFailed?serverMessage()+(state.hasAttempted?' Lần gửi trước có thể đã được lưu. Hãy giữ trang và kiểm tra lại cùng phiếu.':' Câu trả lời chưa được gửi. Hãy giữ trang và thử lại.'):rejected?(reasons[state.lastResult?.code]||'Máy chủ chưa chấp nhận phiếu. Vui lòng liên hệ nhóm nghiên cứu.'):'Kết nối có thể chậm hoặc máy chủ chưa phản hồi. Dữ liệu có thể đã được lưu; đừng làm một phiếu mới. Thử lại sẽ dùng nguyên mã phiếu để tránh ghi trùng.';
+ app.innerHTML=`<section class="completion"><div class="kicker">${busy?'Đang xác nhận từ máy chủ':'Trạng thái gửi phiếu'}</div>${busy?'<div class="spinner" role="status" aria-label="Đang gửi"></div>':'<div class="symbol" aria-hidden="true">○</div>'}<h2 id="screen-title" tabindex="-1">${busy?'Một chút nữa thôi.':rejected||connectionFailed?'Chưa thể hoàn tất.':'Chưa nhận được xác nhận.'}</h2><p role="status">${esc(message)}</p><p class="hint">Giữ trang này mở để không mất khả năng gửi lại cùng phiếu. Không có câu trả lời nào được hiển thị công khai.</p>${state.submission?`<p class="hint">Mã phiếu để liên hệ</p><p class="receipt">${esc(state.submission.submissionId)}</p>`:''}${!busy?'<div class="actions center-actions"><button class="button primary" id="retry">Kiểm tra / gửi lại cùng phiếu</button></div>':''}<p class="hint">Liên hệ nghiên cứu: ${displayConfig('contactEmail')}</p></section>`;
  document.querySelector('#retry')?.addEventListener('click',submit);
  document.querySelector('#screen-title')?.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});
 }
@@ -257,7 +311,7 @@ function renderEnd(){
  document.querySelector('#screen-title')?.focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});
 }
 window.addEventListener('beforeunload',e=>{
- if(state.phase==='survey' && state.page>1 || ['sending','uncertain','rejected'].includes(state.phase)){
+ if(state.phase==='survey' && state.page>0 || ['sending','uncertain','rejected','connectionfailed'].includes(state.phase)){
   e.preventDefault();e.returnValue='';
  }
 });
