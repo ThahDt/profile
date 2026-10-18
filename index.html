@@ -1,1662 +1,234 @@
+
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đỗ Thành Đạt · Cựu sinh viên Ngoại Thương</title>
-    <meta name="description" content="Portfolio cá nhân của Đỗ Thành Đạt (Thah Dt) — sinh viên Kinh tế Quốc tế tại Đại học Ngoại thương.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230A0B0D'/%3E%3Ccircle cx='50' cy='50' r='43' fill='none' stroke='%23D4AF6A' stroke-width='2'/%3E%3Ctext x='50' y='63' font-family='Georgia,serif' font-size='36' fill='%23D4AF6A' text-anchor='middle'%3ETD%3C/text%3E%3C/svg%3E">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['"Playfair Display"', 'serif'],
-                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-                    },
-                    colors: {
-                        ink: {
-                            950: '#0A0B0D',
-                            900: '#131519',
-                            800: '#1B1E24',
-                            700: '#262931',
-                            600: '#33363F',
-                        },
-                        gold: {
-                            200: '#F4E6C2',
-                            300: '#EAD39A',
-                            400: '#D4AF6A',
-                            500: '#BB9350',
-                            600: '#93773F',
-                            700: '#6E5A32',
-                        },
-                        ivory: {
-                            100: '#F7F2E7',
-                            300: '#E1D8C4',
-                        },
-                        sand: {
-                            400: '#A29A87',
-                            500: '#7A7364',
-                            600: '#55503F',
-                        },
-                    },
-                    boxShadow: {
-                        gold: '0 8px 30px -10px rgba(212,175,106,0.45)',
-                    },
-                }
-            }
-        }
-    </script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --ink-950: #0A0B0D;
-            --ink-900: #131519;
-            --ink-800: #1B1E24;
-            --ink-700: #262931;
-            --ink-600: #33363F;
-            --gold-300: #EAD39A;
-            --gold-400: #D4AF6A;
-            --gold-500: #BB9350;
-            --gold-600: #93773F;
-            --ivory-100: #F7F2E7;
-            --ivory-300: #E1D8C4;
-            --sand-400: #A29A87;
-            --sand-500: #7A7364;
-        }
-
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            position: relative;
-        }
-
-        /* Ambient ledger texture — faint, evokes data/finance without shouting.
-           Implemented as a ::before layer (not directly on the section) so the
-           fade-mask only affects the decorative grid, never the real content. */
-        .ledger-texture { position: relative; }
-        .ledger-texture::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(212, 175, 106, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(212, 175, 106, 0.05) 1px, transparent 1px);
-            background-size: 44px 44px;
-            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent 70%);
-            mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .font-display { font-family: 'Playfair Display', serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-
-        .gradient-text {
-            background: linear-gradient(120deg, #FBF3DD 0%, #EAD39A 30%, #D4AF6A 62%, #C29A55 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 2px 22px rgba(212, 175, 106, 0.28));
-        }
-
-        /* Eyebrow label — small tracked mono caption, used as a "letterhead" device */
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.65em;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--gold-400);
-        }
-        .eyebrow::before {
-            content: '';
-            width: 1.6em;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-400));
-        }
-        .eyebrow.center::before { display: none; }
-
-        .glow-button {
-            box-shadow: 0 0 0 1px rgba(212, 175, 106, 0.3), 0 10px 26px -10px rgba(212, 175, 106, 0.5);
-            transition: box-shadow 0.35s cubic-bezier(.2,.8,.2,1), transform 0.35s cubic-bezier(.2,.8,.2,1);
-        }
-        .glow-button:hover {
-            box-shadow: 0 0 0 1px rgba(212, 175, 106, 0.5), 0 16px 34px -10px rgba(212, 175, 106, 0.65);
-            transform: translateY(-2px);
-        }
-
-        .glassmorphism {
-            background: rgba(19, 21, 25, 0.72);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(212, 175, 106, 0.12);
-        }
-
-        /* Ambient drifting glow orbs — replaces the old bouncing "particle" dots */
-        .orb-field {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .orb {
-            position: absolute;
-            border-radius: 9999px;
-            background: radial-gradient(circle, rgba(212,175,106,0.55), transparent 70%);
-            filter: blur(40px);
-            opacity: 0.35;
-            animation: drift 22s ease-in-out infinite;
-        }
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -40px) scale(1.12); }
-        }
-
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid var(--gold-400);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--gold-400); } }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.8s cubic-bezier(.2,.7,.2,1), transform 0.8s cubic-bezier(.2,.7,.2,1);
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Staggered hero entrance on page load */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-in {
-            opacity: 0;
-            animation: fadeUp 0.9s cubic-bezier(.2,.7,.2,1) forwards;
-        }
-        .hero-in-1 { animation-delay: 0.1s; }
-        .hero-in-2 { animation-delay: 0.3s; }
-        .hero-in-3 { animation-delay: 0.5s; }
-        .hero-in-4 { animation-delay: 0.7s; }
-        .hero-in-5 { animation-delay: 0.85s; }
-
-        .skill-bar {
-            background: linear-gradient(90deg, var(--gold-400), var(--gold-600));
-            height: 8px;
-            border-radius: 4px;
-            transition: width 1s ease;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background: var(--gold-400);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(212, 175, 106, 0.15), 0 0 12px rgba(212, 175, 106, 0.5);
-        }
-
-        /* Monogram crest — the site's signature mark, echoed as a wax seal later */
-        .crest {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            border-radius: 9999px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-            color: var(--gold-300);
-            background: radial-gradient(circle at 32% 28%, var(--ink-700), var(--ink-900));
-            border: 1px solid rgba(212, 175, 106, 0.4);
-            box-shadow: inset 0 0 0 1px rgba(212, 175, 106, 0.08), 0 4px 14px -4px rgba(0,0,0,0.6);
-            transition: box-shadow 0.35s ease, transform 0.35s ease;
-            flex-shrink: 0;
-        }
-        a:hover .crest, .group:hover .crest {
-            box-shadow: inset 0 0 0 1px rgba(212, 175, 106, 0.25), 0 0 22px rgba(212, 175, 106, 0.4);
-            transform: translateY(-1px);
-        }
-
-        /* Wax-seal CTA for the graduation invitation */
-        .seal {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 118px;
-            height: 118px;
-            border-radius: 9999px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.9rem;
-            color: var(--ink-950);
-            background: linear-gradient(150deg, var(--gold-200, #F4E6C2), var(--gold-500) 58%, var(--gold-600));
-            box-shadow: 0 20px 44px -14px rgba(212,175,106,0.55), inset 0 2px 5px rgba(255,255,255,0.4), inset 0 -8px 12px rgba(0,0,0,0.28);
-            transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease;
-        }
-        .seal::before {
-            content: '';
-            position: absolute;
-            inset: 9px;
-            border-radius: 9999px;
-            border: 1px dashed rgba(10, 11, 13, 0.32);
-        }
-        .seal-link:hover .seal {
-            transform: scale(1.06) rotate(-3deg);
-            box-shadow: 0 26px 54px -12px rgba(212,175,106,0.7), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -8px 12px rgba(0,0,0,0.32);
-        }
-        .seal-link:active .seal {
-            transform: scale(0.96) rotate(0deg);
-        }
-
-        /* Primary nav links — underline sweep on hover */
-        .nav-link {
-            position: relative;
-            font-size: 0.875rem;
-            color: var(--ivory-300);
-            padding-bottom: 4px;
-            transition: color 0.25s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0; right: 0; bottom: 0;
-            height: 1px;
-            background: var(--gold-400);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        .nav-link:hover { color: var(--gold-300); }
-        .nav-link:hover::after { transform: scaleX(1); }
-        .nav-link.active { color: var(--gold-400); }
-        .nav-link.active::after { transform: scaleX(1); }
-
-        .mobile-nav-link {
-            display: block;
-            padding: 0.9rem 0.25rem;
-            border-bottom: 1px solid rgba(212, 175, 106, 0.08);
-            color: var(--ivory-300);
-            font-size: 0.98rem;
-            transition: color 0.2s ease, padding-left 0.2s ease;
-        }
-        .mobile-nav-link:hover { color: var(--gold-300); padding-left: 0.4rem; }
-
-        #mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(.2,.8,.2,1);
-        }
-        #mobile-menu.menu-open { max-height: 42rem; }
-
-        #scroll-progress {
-            transition: width 0.12s ease-out;
-        }
-
-        #back-to-top {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        #back-to-top.shown {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-
-        /* Keyboard focus visibility */
-        a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
-            outline: 2px solid var(--gold-400);
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: var(--ink-950); }
-        ::-webkit-scrollbar-thumb { background: var(--ink-600); border-radius: 6px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold-600); }
-        html { scrollbar-color: var(--ink-600) var(--ink-950); scrollbar-width: thin; }
-
-        /* Respect reduced-motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .orb, .typewriter, .glow-button, .crest, .seal, .fade-in, .hero-in, #mobile-menu, #back-to-top {
-                animation: none !important;
-                transition: none !important;
-            }
-            .fade-in, .hero-in { opacity: 1 !important; transform: none !important; }
-        }
-
-        /* ===== Scoped fixes for JS-managed dynamic content =====
-           The GPA calculator, AQI widget and theme-toggle scripts are kept
-           verbatim below and occasionally (re)write their own class / inline
-           style values at runtime. These narrowly-scoped, !important rules
-           keep that dynamic output on-palette without touching any script logic. */
-        #grade-inputs-grid > div {
-            border-color: rgba(212, 175, 106, 0.15) !important;
-            background-color: rgba(27, 30, 36, 0.6) !important;
-        }
-        #grade-inputs-grid .text-slate-500 { color: var(--sand-500) !important; }
-        #grade-inputs-grid input.grade-input {
-            border-color: var(--ink-600) !important;
-            background-color: var(--ink-900) !important;
-            color: var(--ivory-100) !important;
-        }
-        #grade-inputs-grid input.grade-input::placeholder { color: var(--sand-500); }
-
-        #result-container .text-slate-500 { color: var(--sand-500) !important; }
-        #result-container .text-white { color: var(--ivory-100) !important; }
-        #result-container .divide-slate-700 > :not([hidden]) ~ :not([hidden]) { border-color: var(--ink-600) !important; }
-
-        #aqi-status {
-            background-color: var(--ink-800) !important;
-            border-color: rgba(212, 175, 106, 0.14) !important;
-        }
-        #aqi-value { font-family: 'JetBrains Mono', monospace !important; }
-
-        #theme-toggle i { color: var(--gold-400) !important; }
-
-        .glassmorphism:hover { box-shadow: 0 20px 40px rgba(212, 175, 106, 0.12) !important; }
-
-        /* ===== Light mode — warm "paper" palette override ===== */
-        body.light-mode { background-color: #FBF8F1 !important; color: #211F1A !important; }
-
-        /* Surfaces */
-        .light-mode .bg-ink-950 { background-color: #FBF8F1 !important; }
-        .light-mode .bg-ink-900 { background-color: #F4EEE0 !important; }
-        .light-mode .bg-ink-900\/60 { background-color: rgba(244,238,224,0.8) !important; }
-        .light-mode .bg-ink-900\/50 { background-color: rgba(244,238,224,0.7) !important; }
-        .light-mode .bg-ink-900\/40 { background-color: rgba(244,238,224,0.6) !important; }
-        .light-mode .bg-ink-800 { background-color: #FFFFFF !important; }
-        .light-mode .bg-ink-800\/80 { background-color: rgba(255,255,255,0.9) !important; }
-        .light-mode .bg-ink-800\/50 { background-color: rgba(255,255,255,0.75) !important; }
-        .light-mode .bg-ink-800\/40 { background-color: rgba(255,255,255,0.65) !important; }
-        .light-mode .bg-ink-800\/30 { background-color: rgba(255,255,255,0.55) !important; }
-        .light-mode .bg-ink-700 { background-color: #FFFFFF !important; }
-        .light-mode .bg-ink-700\/50 { background-color: rgba(255,255,255,0.75) !important; }
-
-        /* Gradient buttons that use ink-* as gradient stops (e.g. the outline "Tải CV" button) */
-        .light-mode .from-ink-800 { --tw-gradient-from: #FFFFFF !important; }
-        .light-mode .to-ink-900 { --tw-gradient-to: #F4EEE0 !important; }
-        .light-mode .from-ink-900 { --tw-gradient-from: #F4EEE0 !important; }
-        .light-mode .to-ink-800 { --tw-gradient-to: #FFFFFF !important; }
-
-        /* Text */
-        .light-mode .text-ivory-100 { color: #211F1A !important; }
-        .light-mode .text-ivory-300 { color: #3B362C !important; }
-        .light-mode .text-sand-400 { color: #7A7050 !important; }
-        .light-mode .text-sand-500 { color: #918862 !important; }
-
-        /* Gold accents were tuned for near-black backgrounds; darken them for readability on paper */
-        .light-mode .text-gold-300 { color: #8A6B32 !important; }
-        .light-mode .text-gold-300\/90 { color: rgba(138,107,50,0.9) !important; }
-        .light-mode .text-gold-300\/80 { color: rgba(138,107,50,0.85) !important; }
-        .light-mode .text-gold-400 { color: #7A5D2A !important; }
-        .light-mode .text-gold-500 { color: #6E5326 !important; }
-        .light-mode .gradient-text {
-            background: linear-gradient(120deg, #6B4F22 0%, #93773F 35%, #B8934F 65%, #8A6B32 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 1px 10px rgba(147,119,63,0.18));
-        }
-        .light-mode .eyebrow { color: #8A6B32; }
-        .light-mode .eyebrow::before { background: linear-gradient(90deg, transparent, #8A6B32); }
-        .light-mode .nav-link { color: #5B5340; }
-        .light-mode .nav-link:hover, .light-mode .nav-link.active { color: #7A5D2A; }
-        .light-mode .mobile-nav-link { color: #5B5340; }
-        .light-mode .mobile-nav-link:hover { color: #7A5D2A; }
-
-        /* Borders */
-        .light-mode .border-ink-700 { border-color: #E7DFC9 !important; }
-        .light-mode .border-ink-600 { border-color: #E7DFC9 !important; }
-        .light-mode .border-ink-600\/50 { border-color: rgba(231,223,201,0.7) !important; }
-
-        .light-mode .glassmorphism { background: rgba(255, 255, 255, 0.78); border-color: rgba(169, 132, 62, 0.28); }
-        .light-mode .crest { background: radial-gradient(circle at 32% 28%, #ffffff, #F4EEE0); color: #7A5D2A; }
-        .light-mode .seal { box-shadow: 0 18px 40px -14px rgba(147,119,63,0.35), inset 0 2px 5px rgba(255,255,255,0.5), inset 0 -8px 12px rgba(0,0,0,0.15); }
-        .light-mode .ledger-texture::before { opacity: 0.5; }
-        .light-mode ::-webkit-scrollbar-track { background: #FBF8F1; }
-        .light-mode ::-webkit-scrollbar-thumb { background: #E7DFC9; }
-        .light-mode #mobile-menu { background: rgba(255,255,255,0.92); }
-        .light-mode #theme-toggle:hover { background-color: #F4EEE0; }
-
-        .light-mode #grade-inputs-grid > div {
-            border-color: rgba(169, 132, 62, 0.25) !important;
-            background-color: rgba(255, 255, 255, 0.75) !important;
-        }
-        .light-mode #grade-inputs-grid .text-slate-500 { color: #8D835F !important; }
-        .light-mode #grade-inputs-grid input.grade-input {
-            border-color: #E7DFC9 !important;
-            background-color: #FFFFFF !important;
-            color: #211F1A !important;
-        }
-        .light-mode #result-container .text-slate-500 { color: #8D835F !important; }
-        .light-mode #result-container .text-white { color: #211F1A !important; }
-        .light-mode #result-container .divide-slate-700 > :not([hidden]) ~ :not([hidden]) { border-color: #E7DFC9 !important; }
-        .light-mode #aqi-status {
-            background-color: #FFFFFF !important;
-            border-color: rgba(169, 132, 62, 0.25) !important;
-        }
-
-        /* Native form control accent (radio buttons in the GPA scale picker) */
-        input[type="radio"] { accent-color: var(--gold-400); }
-
-        /* Custom Input Styles for GPA Tool */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond the Signals | Research Survey</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#050507;color:#fff;font-family:Inter,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 15% 20%,#fff 90%,transparent),radial-gradient(1px 1px at 80% 35%,#fff 90%,transparent),radial-gradient(1px 1px at 40% 75%,#fff 90%,transparent);background-size:240px 260px;opacity:.25}
+main{position:relative;max-width:680px;margin:auto;padding:42px 22px 70px}
+h1{font-size:clamp(38px,8vw,56px);line-height:1.08;letter-spacing:-2px}
+h2{font-size:clamp(28px,5vw,34px)}
+p{font-size:17px;line-height:1.75;color:#d0d0d8}
+.eyebrow{font-size:13px;letter-spacing:3px;color:#b8b8c4;font-weight:600}
+.center{text-align:center}
+.halo{width:165px;height:165px;border-radius:50%;margin:42px auto;border:2px solid #eee;box-shadow:0 0 30px #fff8,0 0 100px #fff3,inset 0 0 30px #fff3}
+.panel{padding:24px;background:#111115;border:1px solid #404048;border-radius:18px;margin:30px 0}
+.question{font-size:18px;font-weight:600;line-height:1.6;margin:32px 0 16px}
+.option{display:flex;align-items:center;gap:14px;padding:18px;border:1px solid #44444c;border-radius:14px;background:#111115;margin:10px 0;font-size:16px;cursor:pointer}
+.option:has(input:checked){border-color:#fff;background:#26262b;box-shadow:0 0 20px #ffffff20}
+input[type=radio],input[type=checkbox]{width:20px;height:20px;accent-color:white;flex-shrink:0}
+button{font-size:16px;padding:16px 27px;border-radius:32px;cursor:pointer}
+.primary{background:white;color:#050507;border:0;font-weight:700;box-shadow:0 0 25px #ffffff35}
+.primary:disabled{opacity:.4;cursor:not-allowed}
+.secondary{background:transparent;color:white;border:1px solid #555}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:32px}
+.progress{height:5px;background:#333;border-radius:8px;margin:22px 0 34px;overflow:hidden}
+.progress div{height:100%;background:white;box-shadow:0 0 15px white}
+.error{padding:14px;border-left:3px solid white;background:#ffffff18;margin-top:20px}
+footer{text-align:center;color:#999;font-size:13px;margin-top:65px}
+@media(max-width:420px){.actions button{padding:14px 18px}}
+</style>
 </head>
-<body class="bg-ink-950 text-ivory-100 overflow-x-hidden antialiased">
-
-    <!-- Scroll progress -->
-    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-gold-600 via-gold-400 to-gold-200 z-[60] w-0"></div>
-
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo / Crest -->
-                <a href="#home" class="flex items-center gap-3 group">
-                    <span class="crest">TĐ</span>
-                    <span class="hidden sm:flex flex-col leading-none">
-                        <span class="font-display text-lg text-ivory-100 group-hover:text-gold-300 transition-colors">Thah Dt</span>
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-sand-400 mt-1">Portfolio cá nhân</span>
-                    </span>
-                </a>
-
-                <!-- Desktop nav -->
-                <div class="hidden lg:flex items-center gap-8">
-                    <a href="#home" class="nav-link">Trang chủ</a>
-                    <a href="#about" class="nav-link">Thông tin</a>
-                    <a href="#education" class="nav-link">Học vấn</a>
-                    <a href="#graduation" class="nav-link">Lễ tốt nghiệp</a>
-                    <a href="#skills" class="nav-link">Kỹ năng</a>
-                    <a href="#gpa-tool" class="nav-link">Góc học tập</a>
-                    <a href="#donate" class="nav-link">Dự án nuôi tôi</a>
-                </div>
-
-                <!-- Right cluster -->
-                <div class="flex items-center space-x-3">
-                    <div id="aqi-container" class="hidden xl:flex items-center px-3 py-1.5 rounded-lg glassmorphism border border-gold-400/10 transition-all hover:scale-105 cursor-help group relative" title="Chất lượng không khí theo vị trí của bạn">
-                        <i class="fas fa-wind text-sand-400 mr-2 animate-pulse"></i>
-                        <div class="flex flex-col items-end leading-none">
-                            <span class="text-[10px] text-sand-400 uppercase tracking-wider">AQI</span>
-                            <span id="aqi-value" class="font-mono font-bold text-gold-400">...</span>
-                        </div>
-
-                        <div id="aqi-status" class="absolute top-full mt-2 right-0 w-max px-3 py-1 rounded-lg bg-ink-800 text-center text-xs shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-gold-400/10 z-50">
-                            Đang tải...
-                        </div>
-                    </div>
-
-                    <a href="FileCV.pdf" download class="hidden md:inline-flex items-center gap-2 bg-gradient-to-br from-gold-300 to-gold-500 text-ink-950 px-4 py-2 rounded-lg text-sm font-semibold shadow-gold hover:from-gold-200 hover:to-gold-400 transition-all hover:-translate-y-0.5">
-                        <i class="fas fa-download"></i> Tải CV
-                    </a>
-
-                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-ink-800 transition-colors" aria-label="Đổi giao diện sáng/tối">
-                        <i class="fas fa-moon text-gold-400"></i>
-                    </button>
-
-                    <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-ink-800 transition-colors" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="mobile-menu">
-                        <i class="fas fa-bars text-gold-400"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile menu panel -->
-        <div id="mobile-menu" class="lg:hidden glassmorphism border-t border-gold-400/10">
-            <div class="container mx-auto px-6 py-4 flex flex-col">
-                <a href="#home" class="mobile-nav-link">Trang chủ</a>
-                <a href="#about" class="mobile-nav-link">Thông tin</a>
-                <a href="#education" class="mobile-nav-link">Học vấn</a>
-                <a href="#graduation" class="mobile-nav-link">Lễ tốt nghiệp</a>
-                <a href="#skills" class="mobile-nav-link">Kỹ năng</a>
-                <a href="#gpa-tool" class="mobile-nav-link">Góc học tập</a>
-                <a href="#donate" class="mobile-nav-link">Dự án nuôi tôi</a>
-                <a href="FileCV.pdf" download class="mt-4 mb-2 inline-flex items-center justify-center gap-2 bg-gradient-to-br from-gold-300 to-gold-500 text-ink-950 px-4 py-2.5 rounded-lg text-sm font-semibold">
-                    <i class="fas fa-download"></i> Tải CV
-                </a>
-            </div>
-        </div>
-    </nav>
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center relative ledger-texture">
-        <div class="orb-field">
-            <div class="orb" style="width:280px; height:280px; left:8%; top:18%; animation-delay:0s;"></div>
-            <div class="orb" style="width:220px; height:220px; left:78%; top:12%; animation-delay:4s;"></div>
-            <div class="orb" style="width:200px; height:200px; left:60%; top:70%; animation-delay:8s;"></div>
-            <div class="orb" style="width:160px; height:160px; left:15%; top:75%; animation-delay:12s;"></div>
-        </div>
-
-        <div class="container mx-auto px-6 z-10 pt-28 pb-16 md:pt-0 md:pb-0">
-            <div class="flex flex-col md:flex-row items-center justify-center md:space-x-14 space-y-10 md:space-y-0">
-                <!-- Profile Image -->
-                <div class="flex-shrink-0 hero-in hero-in-1">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-gold-300 via-gold-400 to-gold-600 p-[3px] shadow-gold">
-                        <div class="w-full h-full bg-ink-900 flex items-center justify-center rounded-[14px] overflow-hidden">
-                           <img src="avatar.jpg" alt="Đỗ Thành Đạt"
-                                class="w-full h-full object-cover rounded-[14px]">
-                        </div>
-                        <span class="absolute -bottom-4 -right-4 crest w-16 h-16 text-xl shadow-gold">TĐ</span>
-                    </div>
-                </div>
-
-                <!-- Main Content -->
-                <div class="max-w-xl text-center md:text-left">
-                    <span class="eyebrow hero-in hero-in-1">Kinh tế Quốc tế · Đại học Ngoại thương</span>
-                    <h1 class="font-display text-5xl md:text-7xl font-bold mt-4 mb-6 gradient-text hero-in hero-in-2">
-                        Đỗ Thành Đạt
-                    </h1>
-                    <div class="text-xl text-gold-300/90 mb-8 h-8 flex justify-center md:justify-start font-display italic hero-in hero-in-3">
-                        <span id="typewriter" class="typewriter"></span>
-                    </div>
-                    <div class="text-lg text-ivory-300 mb-10 leading-relaxed text-justify hero-in hero-in-3">
-                        <p>
-                            Chào mừng bạn đến với không gian của mình! Đây là nơi mình chia sẻ về bản thân, cũng như một profile nho nhỏ.
-                            Mình là Đạt hay còn biết tới với cái tên Thah Dt, một sinh viên kinh tế, một chút yêu Toán và rất muốn khám
-                            phá, nghiên cứu những thứ mới mẻ. Rất vui được gặp bạn tại đây!
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start hero-in hero-in-4">
-                        <a href="#projects" class="bg-gradient-to-r from-gold-300 to-gold-500 text-ink-950 px-8 py-3 rounded-lg font-semibold glow-button text-center">
-                            Xem hoạt động
-                        </a>
-                        <a href="#about" class="border border-gold-400/60 text-gold-300 px-8 py-3 rounded-lg font-semibold hover:bg-gold-400 hover:text-ink-950 hover:border-gold-400 transition-all text-center">
-                            Thông tin cá nhân
-                        </a>
-                        <a href="FileCV.pdf" download class="bg-gradient-to-br from-ink-800 to-ink-900 border border-gold-400/30 hover:border-gold-400/70 text-gold-300 px-8 py-3 rounded-lg font-semibold transition-all hover:-translate-y-0.5 inline-flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i>Tải CV
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <a href="#about" class="hidden md:flex flex-col items-center gap-2 absolute bottom-8 left-1/2 -translate-x-1/2 text-sand-400 hover:text-gold-400 transition-colors hero-in hero-in-5" aria-label="Cuộn xuống">
-            <span class="font-mono text-[10px] tracking-[0.3em] uppercase">Cuộn</span>
-            <i class="fas fa-chevron-down text-xs animate-bounce"></i>
-        </a>
-    </section>
-    <!-- About Section -->
-    <section id="about" class="py-24 md:py-32 relative">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <!-- Tiêu đề -->
-                <div class="text-center mb-16">
-                    <span class="eyebrow justify-center">Chương 01</span>
-                    <h2 class="font-display text-4xl md:text-5xl font-bold mt-3 gradient-text">Thông tin cá nhân</h2>
-                </div>
-
-                <div class="max-w-4xl mx-auto">
-                    <div class="grid md:grid-cols-3 gap-8">
-
-                        <!-- Avatar + Social -->
-                        <div class="text-center">
-                            <!-- Avatar -->
-                            <div class="w-40 h-40 md:w-56 md:h-56 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gold-300 to-gold-600 p-[3px] overflow-hidden shadow-gold">
-                                <img src="avatar.jpg" alt="Đỗ Thành Đạt"
-                                    class="w-full h-full object-cover rounded-[13px]">
-                            </div>
-                            <h3 class="font-display text-2xl font-bold gradient-text mb-1">Đỗ Thành Đạt</h3>
-                            <p class="text-sand-400 mb-6 font-mono text-sm tracking-wide">Sinh viên Kinh tế</p>
-
-                            <!-- Social Media Links -->
-                            <div class="mt-6">
-                                <h4 class="eyebrow justify-center mb-5">Kết nối với mình</h4>
-                                <div class="flex justify-center space-x-4">
-                                    <!-- Facebook -->
-                                    <a href="https://www.facebook.com/thahdt/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                                        class="w-11 h-11 bg-blue-600 rounded-lg flex items-center justify-center hover:scale-110 hover:-translate-y-0.5 transition-transform glow-button">
-                                        <i class="fab fa-facebook-f text-white"></i>
-                                    </a>
-                                    <!-- Instagram -->
-                                    <a href="https://www.instagram.com/thah_dt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-                                        class="w-11 h-11 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center hover:scale-110 hover:-translate-y-0.5 transition-transform glow-button">
-                                        <i class="fab fa-instagram text-white"></i>
-                                    </a>
-                                    <!-- TikTok -->
-                                    <a href="https://www.tiktok.com/@thahdt" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-                                        class="w-11 h-11 bg-black rounded-lg flex items-center justify-center hover:scale-110 hover:-translate-y-0.5 transition-transform glow-button">
-                                        <i class="fab fa-tiktok text-white"></i>
-                                    </a>
-                                    <!-- LinkedIn -->
-                                    <a href="https://www.linkedin.com/in/%C4%91%E1%BB%97-%C4%91%E1%BA%A1t-2bb489367/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                                        class="w-11 h-11 bg-blue-700 rounded-lg flex items-center justify-center hover:scale-110 hover:-translate-y-0.5 transition-transform glow-button">
-                                        <i class="fab fa-linkedin-in text-white"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Personal Info -->
-                        <div class="md:col-span-2">
-                            <div class="glassmorphism rounded-2xl p-8">
-                                <h4 class="font-display text-xl font-bold text-gold-300 mb-6 text-center">Thông tin chi tiết</h4>
-
-                                <div class="space-y-4">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-user text-ink-950"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sand-400 text-sm">Họ và tên</p>
-                                            <p class="font-semibold text-ivory-100">Đỗ Thành Đạt</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-map-marker-alt text-ink-950"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sand-400 text-sm">Quê quán</p>
-                                            <p class="font-semibold text-ivory-100">Lạng Giang, Bắc Ninh, Việt Nam</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-venus-mars text-ink-950"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sand-400 text-sm">Giới tính</p>
-                                            <p class="font-semibold text-ivory-100">Nam</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-heart text-ink-950"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sand-400 text-sm">Tình trạng hôn nhân</p>
-                                            <p class="font-semibold text-ivory-100">Độc thân</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-calendar text-ink-950"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sand-400 text-sm">Ngày sinh</p>
-                                            <p class="font-semibold text-ivory-100">14/08/2005</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-graduation-cap text-ink-950"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-sand-400 text-sm">Chuyên ngành</p>
-                                            <p class="font-semibold text-ivory-100">Kinh tế Quốc tế</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Education & Activities -->
-    <section id="education" class="py-24 md:py-32 bg-ink-900 relative">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <div class="text-center mb-16">
-                    <span class="eyebrow justify-center">Chương 02</span>
-                    <h2 class="font-display text-4xl md:text-5xl font-bold mt-3 gradient-text">Học vấn &amp; Hoạt động</h2>
-                </div>
-
-                <div class="max-w-4xl mx-auto">
-                    <div class="relative">
-                        <div class="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-gold-400 via-gold-500/60 to-transparent"></div>
-
-                        <div class="space-y-8">
-                            <div class="relative pl-12 timeline-item">
-                                <div class="glassmorphism rounded-xl p-6 hover:translate-x-2 transition-transform duration-300">
-                                    <div class="flex items-center mb-2">
-                                        <i class="fas fa-graduation-cap text-gold-400 mr-3"></i>
-                                        <span class="text-gold-400 font-mono text-sm font-semibold tracking-wide">2023 — 2026</span>
-                                    </div>
-                                    <h3 class="font-display text-xl font-bold mb-2 text-ivory-100">Sinh viên Kinh tế</h3>
-                                    <p class="text-sand-400 mb-2">Trường Đại học Ngoại thương</p>
-                                    <p class="text-ivory-300">Tốt nghiệp Xuất sắc · Chuyên ngành Kinh tế Quốc tế</p>
-                                </div>
-                            </div>
-
-                            <div class="relative pl-12 timeline-item">
-                                <div class="glassmorphism rounded-xl p-6 hover:translate-x-2 transition-transform duration-300">
-                                    <div class="flex items-center mb-2">
-                                        <i class="fas fa-trophy text-gold-400 mr-3"></i>
-                                        <span class="text-gold-400 font-mono text-sm font-semibold tracking-wide">2024</span>
-                                    </div>
-                                    <h3 class="font-display text-xl font-bold mb-2 text-ivory-100">Hoạt động nghiên cứu</h3>
-                                    <p class="text-sand-400 mb-2">Nghiên cứu khoa học sinh viên</p>
-                                    <p class="text-ivory-300">Đang tạm trống nha</p>
-                                </div>
-                            </div>
-
-                            <div class="relative pl-12 timeline-item">
-                                <div class="glassmorphism rounded-xl p-6 hover:translate-x-2 transition-transform duration-300">
-                                    <div class="flex items-center mb-2">
-                                        <i class="fas fa-certificate text-gold-400 mr-3"></i>
-                                        <span class="text-gold-400 font-mono text-sm font-semibold tracking-wide">2025</span>
-                                    </div>
-                                    <h3 class="font-display text-xl font-bold mb-2 text-ivory-100">Mục tiêu tương lai</h3>
-                                    <p class="text-sand-400 mb-2">Nâng cao năng lực chuyên môn</p>
-                                    <p class="text-ivory-300">Thành thạo thêm một ngôn ngữ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Graduation Invitation Section -->
-    <section id="graduation" class="py-24 md:py-32 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] bg-gold-400/10 rounded-full blur-[120px] -z-10"></div>
-
-        <div class="container mx-auto px-6">
-            <div class="fade-in max-w-5xl mx-auto">
-                <div class="glassmorphism rounded-3xl border border-gold-400/15 p-8 md:p-14 relative overflow-hidden">
-                    <div class="absolute inset-3 md:inset-4 border border-dashed border-gold-400/15 rounded-2xl pointer-events-none"></div>
-
-                    <div class="relative grid md:grid-cols-[auto,1fr] gap-10 md:gap-14 items-center">
-                        <!-- Seal CTA -->
-                        <div class="flex flex-col items-center gap-4 mx-auto md:mx-0">
-                            <a href="https://thahdt.github.io/tot_nghiep/" target="_blank" rel="noopener noreferrer" class="seal-link" aria-label="Mở thiệp mời lễ tốt nghiệp của Đỗ Thành Đạt">
-                                <span class="seal">TĐ</span>
-                            </a>
-                            <span class="font-mono text-[10px] tracking-[0.2em] text-sand-400 uppercase text-center leading-relaxed">
-                                Chạm vào dấu<br>niêm phong
-                            </span>
-                        </div>
-
-                        <!-- Copy -->
-                        <div class="text-center md:text-left">
-                            <span class="eyebrow justify-center md:justify-start">Chương 03 · Khoá 2026</span>
-                            <h2 class="font-display text-4xl md:text-5xl font-bold mt-3 mb-2 gradient-text">Lễ Tốt Nghiệp</h2>
-                            <p class="font-display italic text-gold-300/80 text-lg mb-6">Một lời mời riêng dành cho bạn tới lễ tốt nghiệp của mình</p>
-                            <p class="text-ivory-300 leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
-                                Bốn năm gắn bó với Ngoại thương sắp khép lại bằng một buổi lễ. Trước khi bước sang chương mới,
-                                mình muốn dành một chỗ ngồi đặc biệt cho những người đã đồng hành cùng mình — và bạn là một
-                                trong số đó. Bên trong thiệp mời là một dải ký ức bốn năm, cùng đôi lời mình muốn gửi riêng đến bạn.
-                            </p>
-                            <div class="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
-                                <a href="https://thahdt.github.io/tot_nghiep/" target="_blank" rel="noopener noreferrer"
-                                   class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-300 to-gold-500 text-ink-950 px-8 py-3 rounded-lg font-semibold glow-button">
-                                    <i class="fas fa-envelope-open-text"></i> Mở thiệp mời
-                                </a>
-                                <span class="font-mono text-xs text-sand-500">thahdt.github.io/tot_nghiep</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Skills & Projects -->
-    <section id="skills" class="py-24 md:py-32 bg-ink-800/30 relative">
-        <div class="container mx-auto px-6">
-            <div class="fade-in">
-                <div class="text-center mb-16">
-                    <span class="eyebrow justify-center">Chương 04</span>
-                    <h2 class="font-display text-4xl md:text-5xl font-bold mt-3 gradient-text">Năng lực &amp; Dự án</h2>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-
-                    <div class="flex items-center justify-center py-10">
-                        <div class="relative w-full max-w-sm aspect-square flex items-center justify-center">
-                            <div class="absolute inset-0 bg-gold-400/15 blur-[60px] rounded-full"></div>
-
-                            <div class="grid grid-cols-3 gap-3 rotate-12 scale-90 md:scale-100">
-                                <div class="w-24 h-24 bg-ink-800/80 backdrop-blur border border-gold-400/30 flex flex-col items-center justify-center hover:bg-gold-400 hover:scale-110 transition-all duration-300 group cursor-pointer" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fab fa-python text-3xl text-gold-400 group-hover:text-ink-950 mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ivory-300 group-hover:text-ink-950">Python</span>
-                                </div>
-                                <div class="w-24 h-24 bg-ink-800/80 backdrop-blur border border-gold-400/30 flex flex-col items-center justify-center hover:bg-blue-500 hover:border-blue-500 hover:scale-110 transition-all duration-300 group cursor-pointer mt-12" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fas fa-database text-3xl text-blue-400 group-hover:text-white mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ivory-300 group-hover:text-white">SQL</span>
-                                </div>
-                                <div class="w-24 h-24 bg-ink-800/80 backdrop-blur border border-gold-400/30 flex flex-col items-center justify-center hover:bg-green-500 hover:border-green-500 hover:scale-110 transition-all duration-300 group cursor-pointer" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fas fa-table text-3xl text-green-400 group-hover:text-white mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ivory-300 group-hover:text-white">Excel</span>
-                                </div>
-                                <div class="w-24 h-24 bg-ink-800/80 backdrop-blur border border-gold-400/30 flex flex-col items-center justify-center hover:bg-purple-500 hover:border-purple-500 hover:scale-110 transition-all duration-300 group cursor-pointer" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fas fa-brain text-3xl text-purple-400 group-hover:text-white mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ivory-300 group-hover:text-white">Logic</span>
-                                </div>
-                                <div class="w-24 h-24 bg-gradient-to-br from-gold-300 to-gold-500 flex flex-col items-center justify-center scale-110 shadow-gold mt-12 z-10" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fas fa-language text-3xl text-ink-950 mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ink-950">English</span>
-                                </div>
-                                <div class="w-24 h-24 bg-ink-800/80 backdrop-blur border border-gold-400/30 flex flex-col items-center justify-center hover:bg-gold-600 hover:border-gold-600 hover:scale-110 transition-all duration-300 group cursor-pointer" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fas fa-chart-pie text-3xl text-gold-500 group-hover:text-white mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ivory-300 group-hover:text-white">BI Tool</span>
-                                </div>
-                                <div class="w-24 h-24 bg-ink-800/80 backdrop-blur border border-gold-400/30 flex flex-col items-center justify-center hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300 group cursor-pointer" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                    <i class="fas fa-search text-3xl text-red-400 group-hover:text-white mb-1"></i>
-                                    <span class="text-[10px] font-bold text-ivory-300 group-hover:text-white">Research</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="font-display text-2xl font-bold mb-6 text-gold-300">Bộ công cụ</h3>
-
-                        <div class="mb-8">
-                            <h4 class="text-sm font-semibold text-ivory-100 mb-3 border-l-2 border-gold-400 pl-3 uppercase tracking-wide">Phân tích dữ liệu</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 rounded-lg bg-ink-800 hover:bg-gold-400 hover:text-ink-950 transition-all cursor-default border border-ink-600 flex items-center font-mono text-sm">
-                                    <i class="fab fa-python mr-2"></i>Python
-                                </span>
-                                <span class="px-4 py-2 rounded-lg bg-ink-800 hover:bg-gold-400 hover:text-ink-950 transition-all cursor-default border border-ink-600 flex items-center font-mono text-sm">
-                                    <i class="fas fa-chart-pie mr-2"></i>PowerBI
-                                </span>
-                                <span class="px-4 py-2 rounded-lg bg-ink-800 hover:bg-gold-400 hover:text-ink-950 transition-all cursor-default border border-ink-600 flex items-center font-mono text-sm">
-                                    <i class="fas fa-database mr-2"></i>Stata
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="mb-8">
-                            <h4 class="text-sm font-semibold text-ivory-100 mb-3 border-l-2 border-gold-400 pl-3 uppercase tracking-wide">Tin học văn phòng &amp; Thiết kế</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 rounded-lg bg-ink-800 hover:bg-gold-400 hover:text-ink-950 transition-all cursor-default border border-ink-600 flex items-center font-mono text-sm">
-                                    <i class="fas fa-file-excel mr-2"></i>Excel
-                                </span>
-                                <span class="px-4 py-2 rounded-lg bg-ink-800 hover:bg-gold-400 hover:text-ink-950 transition-all cursor-default border border-ink-600 flex items-center font-mono text-sm">
-                                    <i class="fas fa-file-word mr-2"></i>Word
-                                </span>
-                                <span class="px-4 py-2 rounded-lg bg-ink-800 hover:bg-gold-400 hover:text-ink-950 transition-all cursor-default border border-ink-600 flex items-center font-mono text-sm">
-                                    <i class="fas fa-palette mr-2"></i>Canva
-                                </span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-sm font-semibold text-ivory-100 mb-3 border-l-2 border-gold-400 pl-3 uppercase tracking-wide">Hoạt động nổi bật</h4>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between p-3 rounded-lg bg-ink-800 border border-ink-600 hover:border-gold-400/60 transition-colors">
-                                    <div class="flex items-center"><i class="fas fa-users text-blue-400 mr-3"></i><span class="text-ivory-100">Admin LimC</span></div>
-                                    <span class="text-xs text-sand-400 font-mono">2023 – Nay</span>
-                                </div>
-                                <div class="flex items-center justify-between p-3 rounded-lg bg-ink-800 border border-ink-600 hover:border-pink-500/60 transition-colors">
-                                    <div class="flex items-center"><i class="fab fa-tiktok text-pink-400 mr-3"></i><span class="text-ivory-100">TikTok Thah Dt</span></div>
-                                    <span class="text-xs text-sand-400 font-mono">20k Follows</span>
-                                </div>
-                                 <div class="flex items-center justify-between p-3 rounded-lg bg-ink-800 border border-ink-600 hover:border-red-500/60 transition-colors">
-                                    <div class="flex items-center"><i class="fas fa-university text-red-400 mr-3"></i><span class="text-ivory-100">Foreign Trade University</span></div>
-                                    <span class="text-xs text-sand-400 font-mono">2023 – Nay</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- GPA CALCULATOR SECTION -->
-    <section id="gpa-tool" class="py-24 md:py-32 relative bg-ink-800/50">
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"></div>
-        <div class="container mx-auto px-6">
-            <div class="fade-in max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <span class="eyebrow justify-center mb-4">Chương 05</span>
-                    <div class="inline-flex items-center justify-center p-3 rounded-full bg-gold-400/10 mb-4 text-gold-400 border border-gold-400/20">
-                        <i class="fas fa-calculator text-2xl"></i>
-                    </div>
-                    <h2 class="font-display text-4xl md:text-5xl font-bold gradient-text mb-4">Góc Tính GPA</h2>
-                    <p class="text-sand-400 max-w-2xl mx-auto">Đây là công cụ mà tớ tạo ra để giúp cậu tính toán điểm số để chinh phục mục tiêu của mình.</p>
-                </div>
-
-                <div class="grid lg:grid-cols-12 gap-8">
-                    <!-- LEFT COLUMN: Settings & Input -->
-                    <div class="lg:col-span-4 space-y-6">
-                        <!-- Scale Config -->
-                        <div class="glassmorphism rounded-xl p-6">
-                            <div class="flex items-center gap-2 mb-4 text-gold-400">
-                                <i class="fas fa-cog"></i>
-                                <h3 class="font-semibold">1. Thang điểm tính toán</h3>
-                            </div>
-                            <div class="space-y-3">
-                                <label class="flex items-start gap-3 p-3 rounded-lg border border-ink-600 cursor-pointer transition-all hover:bg-ink-700/50 has-[:checked]:bg-gold-400/10 has-[:checked]:border-gold-400/50">
-                                    <input type="radio" name="scale" value="type1" checked class="mt-1 text-gold-400 focus:ring-gold-400 bg-ink-800 border-ink-600">
-                                    <div>
-                                        <span class="block font-medium text-sm text-ivory-100">Thang số 1 (A = 4.0)</span>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start gap-3 p-3 rounded-lg border border-ink-600 cursor-pointer transition-all hover:bg-ink-700/50 has-[:checked]:bg-gold-400/10 has-[:checked]:border-gold-400/50">
-                                    <input type="radio" name="scale" value="type2" class="mt-1 text-gold-400 focus:ring-gold-400 bg-ink-800 border-ink-600">
-                                    <div>
-                                        <span class="block font-medium text-sm text-ivory-100">Thang số 2 (A = 3.7)</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Current Info -->
-                        <div class="glassmorphism rounded-xl p-6">
-                            <div class="flex items-center gap-2 mb-4 text-gold-400">
-                                <i class="fas fa-book-open"></i>
-                                <h3 class="font-semibold">2. Thông tin học tập</h3>
-                            </div>
-
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-sand-400 mb-1.5">Số tín chỉ cần đạt</label>
-                                    <input type="number" id="totalCredits" placeholder="VD: 130" class="w-full bg-ink-900/60 border border-ink-600 rounded-lg p-2.5 text-ivory-100 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors placeholder-sand-600">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-sand-400 mb-1.5">Số tín chỉ đã tích lũy</label>
-                                        <input type="number" id="earnedCredits" placeholder="VD: 60" class="w-full bg-ink-900/60 border border-ink-600 rounded-lg p-2.5 text-ivory-100 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors placeholder-sand-600">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-sand-400 mb-1.5">GPA hiện tại</label>
-                                        <input type="number" id="currentGPA" placeholder="VD: 3.1" step="0.01" max="4.0" class="w-full bg-ink-900/60 border border-ink-600 rounded-lg p-2.5 text-ivory-100 focus:border-gold-400 focus:ring-1 focus:ring-gold-400 transition-colors placeholder-sand-600">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 p-3 bg-ink-900/50 rounded-lg border border-ink-600 flex gap-2 text-xs text-sand-400">
-                                <i class="fas fa-info-circle mt-0.5"></i>
-                                <p>Không tính GDQP, Thể chất vào GPA.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT COLUMN: Results -->
-                    <div class="lg:col-span-8 space-y-6">
-                        <!-- Main Target Result -->
-                        <div class="glassmorphism rounded-xl p-1 border-t-4 border-t-green-500 overflow-hidden">
-                            <div class="p-6 bg-ink-800/40">
-                                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                                    <div>
-                                        <h3 class="font-display text-lg font-bold text-ivory-100 flex items-center gap-2">
-                                            <i class="fas fa-bullseye text-green-500"></i>
-                                            Mục tiêu GPA
-                                        </h3>
-                                        <p class="text-sm text-sand-400">Tớ sẽ tính cho cậu cách vượt qua mục tiêu của mình.</p>
-                                    </div>
-                                    <div class="w-full md:w-auto">
-                                        <div class="relative">
-                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <i class="fas fa-crosshairs text-sand-500"></i>
-                                            </div>
-                                            <input type="number" id="targetGPA" placeholder="Nhập mục tiêu (VD: 3.2)" step="0.01" max="4.0" class="pl-10 w-full md:w-60 bg-ink-900 border border-ink-600 rounded-lg p-2.5 text-ivory-100 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors font-bold text-center">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="result-container" class="bg-ink-900/50 rounded-xl p-6 border border-ink-600/50">
-                                    <div class="text-center text-sand-500 py-4">
-                                        <i class="fas fa-calculator text-3xl mb-2 opacity-30"></i>
-                                        <p>Nhập thông tin bên trái và mục tiêu để xem kết quả.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Detailed Planner -->
-                        <div id="planner-section" class="glassmorphism rounded-xl p-1 border-t-4 border-t-purple-500 overflow-hidden hidden">
-                            <div class="p-6 bg-ink-800/40">
-                                <div class="mb-6">
-                                    <h3 class="font-display text-lg font-bold text-ivory-100 flex items-center gap-2">
-                                        <i class="fas fa-chart-pie text-purple-500"></i>
-                                        Chi tiết kế hoạch tín chỉ
-                                    </h3>
-                                    <p class="text-sm text-sand-400">Phân bổ <span id="remaining-credits-text" class="font-bold text-ivory-100">0</span> tín chỉ còn lại vào các mức điểm.</p>
-                                </div>
-
-                                <!-- Progress Bar -->
-                                <div class="mb-6">
-                                    <div class="flex justify-between text-xs font-medium mb-1.5">
-                                        <span class="text-sand-400">Đã phân bổ: <span id="allocated-text" class="text-purple-400 font-bold">0</span></span>
-                                        <span id="over-allocated-warning" class="text-red-400 font-bold hidden">Vượt quá giới hạn!</span>
-                                    </div>
-                                    <div class="w-full bg-ink-700 rounded-full h-3 overflow-hidden">
-                                        <div id="allocation-bar" class="h-full bg-purple-500 transition-all duration-300 w-0"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Grid Inputs -->
-                                <div id="grade-inputs-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
-                                    <!-- Inputs will be injected here by JS -->
-                                </div>
-
-                                <!-- Final Result Box -->
-                                <div class="bg-gradient-to-r from-ink-900 to-ink-800 rounded-xl p-6 flex flex-col md:flex-row justify-between items-center shadow-lg border border-ink-600 relative overflow-hidden">
-                                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full -mr-10 -mt-10 pointer-events-none blur-xl"></div>
-
-                                    <div class="relative z-10 mb-4 md:mb-0 text-center md:text-left">
-                                        <div class="text-sand-400 text-xs uppercase font-bold tracking-wider mb-1">Kết quả dự kiến</div>
-                                        <div class="text-xs text-sand-500">Dựa trên kế hoạch bạn nhập</div>
-                                    </div>
-
-                                    <div class="text-right relative z-10 flex items-center gap-4">
-                                        <div>
-                                            <div id="projected-gpa" class="font-mono text-4xl font-bold text-ivory-100">---</div>
-                                            <div class="text-xs text-sand-400">GPA Tích lũy cuối khóa</div>
-                                        </div>
-                                        <div id="projected-icon" class="hidden"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-20 bg-ink-900 relative hidden">
-         <!-- Placeholder for Projects Section if needed -->
-    </section>
-    <section id="donate" class="py-24 md:py-32 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-400/10 rounded-full blur-[100px] -z-10"></div>
-        <div class="container mx-auto px-6">
-            <div class="fade-in max-w-4xl mx-auto">
-                <div class="glassmorphism rounded-2xl p-8 md:p-12 border border-gold-400/25 relative overflow-hidden">
-
-                    <div class="text-center mb-10">
-                        <span class="eyebrow justify-center mb-4">Chương 06</span>
-                        <div class="inline-block p-3 rounded-full bg-gold-400/10 mb-4">
-                            <i class="fas fa-coins text-3xl text-gold-400"></i>
-                        </div>
-                        <h2 class="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">Dự Án Nuôi Tôi</h2>
-                        <p class="text-sand-400">Có thể bạn đang nuôi một tỷ phú trong tương lai!</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-10 items-center">
-                        <div class="space-y-6">
-                            <div class="p-4 rounded-xl bg-ink-900/50 border border-ink-600">
-                                <p class="text-sm text-sand-400 mb-1">Ngân hàng</p>
-                                <p class="text-xl font-bold text-ivory-100">MB Bank</p>
-                            </div>
-                            <div class="p-4 rounded-xl bg-ink-900/50 border border-ink-600 group cursor-pointer hover:border-gold-400/50 transition-colors" onclick="copySTK()">
-                                <div class="flex justify-between items-center mb-1">
-                                    <p class="text-sm text-sand-400">Số tài khoản</p>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <p id="stk-number" class="text-2xl font-bold text-gold-400 font-mono tracking-wider">193987654321</p>
-                                    <i class="fas fa-copy text-sand-400 group-hover:text-gold-400 transition-colors"></i>
-                                </div>
-                            </div>
-                            <div class="p-4 rounded-xl bg-ink-900/50 border border-ink-600">
-                                <p class="text-sm text-sand-400 mb-1">Chủ tài khoản</p>
-                                <p class="text-xl font-bold text-ivory-100 uppercase">DO THANH DAT</p>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-center">
-                            <div class="bg-white p-4 rounded-xl shadow-2xl">
-                                <img src="https://img.vietqr.io/image/MB-193987654321-compact.png?amount=0&addInfo=Nuoi%20Dat%20Di"
-                                     class="w-48 h-48 object-contain rounded-lg" alt="Mã QR chuyển khoản MB Bank">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="copy-toast" class="absolute top-4 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg transform -translate-y-20 transition-transform duration-300 flex items-center gap-2 z-50">
-                        <i class="fas fa-check-circle"></i> Đã sao chép số tài khoản!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-ink-700 bg-ink-900/40">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col items-center gap-5 text-center">
-                <span class="crest">TĐ</span>
-                <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-                    <a href="#home" class="text-sand-400 hover:text-gold-400 transition-colors">Trang chủ</a>
-                    <a href="#about" class="text-sand-400 hover:text-gold-400 transition-colors">Thông tin</a>
-                    <a href="#education" class="text-sand-400 hover:text-gold-400 transition-colors">Học vấn</a>
-                    <a href="#graduation" class="text-sand-400 hover:text-gold-400 transition-colors">Lễ tốt nghiệp</a>
-                    <a href="#gpa-tool" class="text-sand-400 hover:text-gold-400 transition-colors">Góc học tập</a>
-                </div>
-                <div class="flex items-center gap-4">
-                    <a href="https://www.facebook.com/thahdt/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-sand-500 hover:text-gold-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/thah_dt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-sand-500 hover:text-gold-400 transition-colors"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@thahdt" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-sand-500 hover:text-gold-400 transition-colors"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/in/thahdt/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-sand-500 hover:text-gold-400 transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <p class="text-sand-500 text-xs font-mono">
-                    © <span id="current-year">2026</span> Đỗ Thành Đạt (Thah Dt). Được tạo với <i class="fas fa-heart text-gold-400"></i> tại Việt Nam.
-                </p>
-            </div>
-        </div>
-    </footer>
-    <!-- Back to top -->
-    <a href="#home" id="back-to-top" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 text-ink-950 flex items-center justify-center shadow-gold hover:scale-110 transition-transform" aria-label="Về đầu trang">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-
-    <!-- Main Scripts -->
-    <script>
-        // Typewriter effect
-        const texts = [
-            "Phân tích dữ liệu",
-            "Sinh viên Ngoại Thương", 
-            "Nghiên cứu Kinh tế",
-            "Thah Dt yêu Toán"
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typewriterElement = document.getElementById('typewriter');
-
-        function typeWriter() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeWriter, typeSpeed);
-        }
-
-        // Start typewriter effect
-        typeWriter();
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('glassmorphism');
-            } else {
-                navbar.classList.remove('glassmorphism');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        let isDarkMode = true;
-
-        themeToggle.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            
-            if (isDarkMode) {
-                body.classList.remove('light-mode');
-                themeToggle.innerHTML = '<i class="fas fa-moon text-yellow-400"></i>';
-            } else {
-                body.classList.add('light-mode');
-                themeToggle.innerHTML = '<i class="fas fa-sun text-yellow-400"></i>';
-            }
-        });
-
-        // Add some interactive hover effects
-        document.querySelectorAll('.glassmorphism').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 20px 40px rgba(250, 204, 21, 0.1)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
-
-        // Animate skill bars when they come into view
-        const skillBars = document.querySelectorAll('.skill-bar');
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const width = entry.target.style.width;
-                    entry.target.style.width = '0%';
-                    setTimeout(() => {
-                        entry.target.style.width = width;
-                    }, 200);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        skillBars.forEach(bar => {
-            skillObserver.observe(bar);
-        });
-
-        // Copy STK
-        function copySTK() {
-            const stk = document.getElementById('stk-number').innerText;
-            navigator.clipboard.writeText(stk).then(() => {
-                const toast = document.getElementById('copy-toast');
-                toast.classList.remove('-translate-y-20'); 
-                setTimeout(() => {
-                    toast.classList.add('-translate-y-20'); 
-                }, 2000);
-            });
-        }
-    </script>
-
-    <!-- GPA CALCULATOR LOGIC (Pure JS) -->
-    <script>
-        (function() {
-            // Data Config
-            const scales = {
-                type1: {
-                    name: "Thang chuẩn (A = 4.0)",
-                    details: [
-                        { char: 'A', val: 4.0, color: 'text-green-500' },
-                        { char: 'B+', val: 3.5, color: 'text-blue-500' },
-                        { char: 'B', val: 3.0, color: 'text-blue-500' },
-                        { char: 'C+', val: 2.5, color: 'text-yellow-500' },
-                        { char: 'C', val: 2.0, color: 'text-yellow-500' },
-                        { char: 'D+', val: 1.5, color: 'text-orange-500' },
-                        { char: 'D', val: 1.0, color: 'text-orange-500' },
-                        { char: 'F', val: 0.0, color: 'text-red-500' }
-                    ]
-                },
-                type2: {
-                    name: "Thang chi tiết (A+ = 4.0, A = 3.7)",
-                    details: [
-                        { char: 'A+', val: 4.0, color: 'text-green-500' },
-                        { char: 'A', val: 3.7, color: 'text-green-500' },
-                        { char: 'B+', val: 3.5, color: 'text-blue-500' },
-                        { char: 'B', val: 3.0, color: 'text-blue-500' },
-                        { char: 'C+', val: 2.5, color: 'text-yellow-500' },
-                        { char: 'C', val: 2.0, color: 'text-yellow-500' },
-                        { char: 'D+', val: 1.5, color: 'text-orange-500' },
-                        { char: 'D', val: 1.0, color: 'text-orange-500' },
-                        { char: 'F', val: 0.0, color: 'text-red-500' }
-                    ]
-                }
-            };
-
-            // DOM Elements
-            const els = {
-                scaleRadios: document.getElementsByName('scale'),
-                totalCredits: document.getElementById('totalCredits'),
-                earnedCredits: document.getElementById('earnedCredits'),
-                currentGPA: document.getElementById('currentGPA'),
-                targetGPA: document.getElementById('targetGPA'),
-                
-                resultContainer: document.getElementById('result-container'),
-                plannerSection: document.getElementById('planner-section'),
-                remainingText: document.getElementById('remaining-credits-text'),
-                allocatedText: document.getElementById('allocated-text'),
-                overAllocatedWarning: document.getElementById('over-allocated-warning'),
-                allocationBar: document.getElementById('allocation-bar'),
-                gradeInputsGrid: document.getElementById('grade-inputs-grid'),
-                projectedGPA: document.getElementById('projected-gpa'),
-                projectedIcon: document.getElementById('projected-icon')
-            };
-
-            let state = {
-                scaleType: 'type1',
-                plan: {} // Stores grade: credits
-            };
-
-            // Helpers
-            const parse = (val) => parseFloat(val) || 0;
-
-            // Render Grade Inputs for Planner
-            function renderPlannerInputs() {
-                els.gradeInputsGrid.innerHTML = '';
-                const currentScale = scales[state.scaleType].details;
-                
-                currentScale.forEach(grade => {
-                    const div = document.createElement('div');
-                    div.className = `p-3 rounded-lg border border-slate-700 bg-slate-800/50 flex flex-col items-center`;
-                    div.innerHTML = `
-                        <div class="flex w-full justify-between items-center mb-2">
-                            <span class="font-bold text-lg ${grade.color}">${grade.char}</span>
-                            <span class="text-xs text-slate-500 font-mono">${grade.val}</span>
-                        </div>
-                        <input type="number" data-grade="${grade.char}" placeholder="0" class="grade-input w-full text-sm p-1.5 border border-slate-700 rounded bg-slate-900 text-white text-center focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
-                    `;
-                    els.gradeInputsGrid.appendChild(div);
-                });
-
-                // Re-attach listeners to new inputs
-                document.querySelectorAll('.grade-input').forEach(input => {
-                    input.addEventListener('input', (e) => {
-                        state.plan[e.target.dataset.grade] = parse(e.target.value);
-                        updateCalculations();
-                    });
-                });
-            }
-
-            // Main Calculation Logic
-            function updateCalculations() {
-                const total = parse(els.totalCredits.value);
-                const earned = parse(els.earnedCredits.value);
-                const current = parse(els.currentGPA.value);
-                const target = parse(els.targetGPA.value);
-
-                const remaining = total - earned;
-
-                // 1. Calculate Target Requirement
-                let reqHtml = '';
-                if (!els.totalCredits.value || !els.earnedCredits.value || !els.targetGPA.value) {
-                     reqHtml = `
-                        <div class="text-center text-slate-500 py-4">
-                            <i class="fas fa-calculator text-3xl mb-2 opacity-30"></i>
-                            <p>Nhập đủ thông tin để xem phân tích.</p>
-                        </div>
-                     `;
-                     els.plannerSection.classList.add('hidden');
-                } else if (remaining <= 0) {
-                     reqHtml = `<div class="text-red-400 text-center font-medium">Đã hoàn thành hết tín chỉ!</div>`;
-                     els.plannerSection.classList.add('hidden');
-                } else {
-                    const requiredPoints = (target * total) - (current * earned);
-                    const requiredGPA = requiredPoints / remaining;
-                    const formattedReq = requiredGPA.toFixed(2);
-                    
-                    let statusBadge = '';
-                    if(requiredGPA > 4.0) statusBadge = '<span class="px-3 py-1 bg-red-900/50 text-red-400 rounded-full text-xs font-bold border border-red-900">Đừng buồn nhé, sẽ còn con đường khác!</span>';
-                    else if(requiredGPA > 3.6) statusBadge = '<span class="px-3 py-1 bg-orange-900/50 text-orange-400 rounded-full text-xs font-bold border border-orange-900">Căng đấy bro</span>';
-                    else if(requiredGPA <= 0) statusBadge = '<span class="px-3 py-1 bg-blue-900/50 text-blue-400 rounded-full text-xs font-bold border border-blue-900">Thừa rồi, chơi thôi!</span>';
-                    else statusBadge = '<span class="px-3 py-1 bg-green-900/50 text-green-400 rounded-full text-xs font-bold border border-green-900">Cánh cửa rộng lắm rồi!</span>';
-
-                    reqHtml = `
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-700">
-                             <div class="pb-4 md:pb-0">
-                                <span class="text-xs text-slate-500 uppercase tracking-wide">TC Còn lại</span>
-                                <div class="text-3xl font-bold text-white mt-1">${remaining}</div>
-                             </div>
-                             <div class="py-4 md:py-0">
-                                <span class="text-xs text-slate-500 uppercase tracking-wide">GPA Cần đạt</span>
-                                <div class="text-3xl font-extrabold mt-1 ${requiredGPA > 4 ? 'text-red-500' : 'text-green-500'}">${formattedReq}</div>
-                             </div>
-                             <div class="pt-4 md:pt-0 flex flex-col justify-center items-center">
-                                <span class="text-xs text-slate-500 uppercase tracking-wide mb-2">Đánh giá</span>
-                                ${statusBadge}
-                             </div>
-                        </div>
-                    `;
-                    
-                    // Show Planner
-                    els.plannerSection.classList.remove('hidden');
-                    els.remainingText.innerText = remaining;
-                }
-                els.resultContainer.innerHTML = reqHtml;
-
-                // 2. Calculate Planner (if active)
-                if (remaining > 0) {
-                    let plannedCredits = 0;
-                    let plannedPoints = 0;
-                    
-                    const currentScaleDetails = scales[state.scaleType].details;
-                    
-                    for (const [grade, credits] of Object.entries(state.plan)) {
-                         const credVal = parse(credits);
-                         if(credVal > 0) {
-                             const gradeInfo = currentScaleDetails.find(g => g.char === grade);
-                             if(gradeInfo) {
-                                 plannedCredits += credVal;
-                                 plannedPoints += (credVal * gradeInfo.val);
-                             }
-                         }
-                    }
-
-                    // Progress Bar
-                    els.allocatedText.innerText = plannedCredits;
-                    const percent = Math.min((plannedCredits / remaining) * 100, 100);
-                    els.allocationBar.style.width = `${percent}%`;
-                    
-                    if (plannedCredits > remaining) {
-                        els.overAllocatedWarning.classList.remove('hidden');
-                        els.allocationBar.classList.add('bg-red-500');
-                        els.allocationBar.classList.remove('bg-purple-500');
-                    } else {
-                        els.overAllocatedWarning.classList.add('hidden');
-                        els.allocationBar.classList.add('bg-purple-500');
-                        els.allocationBar.classList.remove('bg-red-500');
-                    }
-
-                    // Final Projection
-                    const finalTotalCredits = earned + plannedCredits;
-                    const finalTotalPoints = (earned * current) + plannedPoints;
-                    const projected = finalTotalCredits > 0 ? (finalTotalPoints / finalTotalCredits).toFixed(2) : current;
-                    
-                    els.projectedGPA.innerText = projected;
-                    
-                    // Check Icon
-                    els.projectedIcon.classList.remove('hidden');
-                    if (target > 0 && parseFloat(projected) >= target) {
-                        els.projectedIcon.innerHTML = '<i class="fas fa-check-circle text-3xl text-green-400"></i>';
-                    } else {
-                        els.projectedIcon.innerHTML = '<i class="fas fa-exclamation-circle text-3xl text-red-400"></i>';
-                    }
-                }
-            }
-
-            // Initialization
-            els.scaleRadios.forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    state.scaleType = e.target.value;
-                    state.plan = {}; // Reset plan
-                    renderPlannerInputs();
-                    updateCalculations();
-                });
-            });
-
-            [els.totalCredits, els.earnedCredits, els.currentGPA, els.targetGPA].forEach(input => {
-                input.addEventListener('input', updateCalculations);
-            });
-
-            // Init Render
-            renderPlannerInputs();
-
-        })();
-    </script>
-
-    <!-- AQI Script (Preserved) -->
-    <script>
-        async function fetchAQI() {
-            const myToken = '0413078940d7c6b3592fd55f2b68ee87f28e99f0';
-            const url = `https://api.waqi.info/feed/here/?token=${myToken}`;
-            const aqiValueEl = document.getElementById('aqi-value');
-            const aqiStatusEl = document.getElementById('aqi-status');
-            const aqiIcon = document.querySelector('#aqi-container i');
-            const aqiLabel = document.querySelector('#aqi-container span.uppercase');
-
-            try {
-                const response = await fetch(url);
-                const result = await response.json();
-
-                if (result.status === 'ok') {
-                    const data = result.data;
-                    const aqi = data.aqi;
-                    let cityName = data.city.name.split(',')[0]; 
-                    if (cityName.length > 10) cityName = cityName.substring(0, 10) + '..';
-
-                    aqiValueEl.innerText = aqi;
-                    if(aqiLabel) aqiLabel.innerText = `AQI (${cityName})`;
-
-                    let colorClass = '';
-                    let statusText = '';
-                    
-                    aqiValueEl.className = "font-bold"; 
-                    aqiStatusEl.className = "absolute top-full mt-2 right-0 w-max px-3 py-1 rounded-lg bg-slate-800 text-center text-xs shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all border border-slate-700 z-50";
-                    if (aqiIcon) aqiIcon.className = "fas mr-2 animate-pulse";
-
-                    if (aqi <= 50) {
-                        colorClass = 'text-green-400';
-                        statusText = 'Cho phép em thở';
-                        if(aqiIcon) aqiIcon.classList.add('fa-leaf', 'text-green-400');
-                    } else if (aqi <= 100) {
-                        colorClass = 'text-yellow-400';
-                        statusText = 'Tôi không cho phép em ra ngoài';
-                        if(aqiIcon) aqiIcon.classList.add('fa-wind', 'text-yellow-400');
-                    } else if (aqi <= 150) {
-                        colorClass = 'text-orange-400';
-                        statusText = 'Đừng ra đường nữa, ở lại với tôi';
-                        if(aqiIcon) aqiIcon.classList.add('fa-smog', 'text-orange-400');
-                    } else {
-                        colorClass = 'text-red-500';
-                        statusText = 'Tôi lo cho em lắm đấy!';
-                        if(aqiIcon) aqiIcon.classList.add('fa-biohazard', 'text-red-500');
-                    }
-
-                    aqiValueEl.classList.add(colorClass);
-                    aqiStatusEl.classList.add(colorClass);
-                    aqiStatusEl.innerText = statusText;
-
-                } else {
-                    throw new Error('API Error');
-                }
-            } catch (error) {
-                console.error('Lỗi AQI:', error);
-                aqiValueEl.innerText = "--";
-                aqiStatusEl.innerText = "Lỗi kết nối";
-            }
-        }
-        fetchAQI();
-    </script>
-
-    <!-- UI Enhancements: mobile menu, scroll progress, back-to-top, scroll-spy, footer year -->
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                const isOpen = mobileMenu.classList.toggle('menu-open');
-                mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                mobileMenuBtn.innerHTML = isOpen
-                    ? '<i class="fas fa-times text-gold-400"></i>'
-                    : '<i class="fas fa-bars text-gold-400"></i>';
-            });
-            document.querySelectorAll('.mobile-nav-link').forEach((link) => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('menu-open');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-gold-400"></i>';
-                });
-            });
-        }
-
-        // Scroll progress bar + back-to-top visibility + nav scroll-spy
-        const scrollProgressEl = document.getElementById('scroll-progress');
-        const backToTopEl = document.getElementById('back-to-top');
-        const spySections = document.querySelectorAll('section[id]');
-        const spyNavLinks = document.querySelectorAll('.nav-link');
-
-        function onChromeScroll() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            if (scrollProgressEl) scrollProgressEl.style.width = progress + '%';
-
-            if (backToTopEl) backToTopEl.classList.toggle('shown', scrollTop > 500);
-
-            let currentId = '';
-            const spyPos = scrollTop + 140;
-            spySections.forEach((section) => {
-                if (section.offsetHeight > 0 && section.offsetTop <= spyPos) {
-                    currentId = section.id;
-                }
-            });
-            spyNavLinks.forEach((link) => {
-                link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
-            });
-        }
-        window.addEventListener('scroll', onChromeScroll, { passive: true });
-        onChromeScroll();
-
-        // Footer year
-        const currentYearEl = document.getElementById('current-year');
-        if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
-    </script>
+<body>
+<main>
+<div id="app"></div>
+<footer>COSMIC MONOCHROME · RESEARCH SURVEY</footer>
+</main>
+
+<script>
+// Dán URL Web App Google Apps Script vào đây.
+// Để trống để chạy ở chế độ xem thử.
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5-vnXr_1os4JPeVTPDOtxObuSRzvPpLLvNTuytm7WCdmf7zdpwi-dKLvQVq0JUYLE/exec";
+
+const sections = [
+{
+ title:"Thông tin tham gia",
+ description:"Một vài thông tin cơ bản về bạn.",
+ questions:[
+  {id:"AGE",text:"Bạn thuộc nhóm tuổi nào?",options:["Dưới 18 tuổi","18–22 tuổi","23–26 tuổi","27–30 tuổi","Trên 30 tuổi"]},
+  {id:"EXP",text:"Trong 12 tháng gần đây, bạn có trải qua giai đoạn tìm hiểu hoặc quan hệ tình cảm không?",options:["Có","Không"]}
+ ]
+},
+{
+ title:"Trải nghiệm tình cảm",
+ description:"Hãy nghĩ về một người mà bạn từng hoặc đang có sự quan tâm tình cảm.",
+ questions:[
+  {id:"BR01",text:"Người đó có lúc thể hiện sự quan tâm rõ rệt nhưng sau đó đột ngột trở nên xa cách."},
+  {id:"BR02",text:"Tôi từng nhận được tín hiệu tình cảm khiến mình hy vọng, dù đối phương không thể hiện ý định cam kết rõ ràng."},
+  {id:"BR03",text:"Sự quan tâm của người đó xuất hiện và biến mất một cách khó dự đoán."}
+ ]
+},
+{
+ title:"Nhạy cảm với sự từ chối",
+ description:"Hãy đánh giá mức độ đồng ý của bạn.",
+ questions:[
+  {id:"RS01",text:"Tôi thường lo lắng rằng người mình quan tâm có thể từ chối mình."},
+  {id:"RS02",text:"Khi đối phương ít phản hồi, tôi dễ nghĩ rằng họ không còn muốn gần gũi với mình."},
+  {id:"RS03",text:"Những dấu hiệu bị từ chối khiến tôi cảm thấy bất an."}
+ ]
+},
+{
+ title:"Sự lệ thuộc cảm xúc",
+ description:"Hãy đánh giá các trải nghiệm cảm xúc dưới đây.",
+ questions:[
+  {id:"ED01",text:"Tâm trạng của tôi phụ thuộc nhiều vào cách người đó đối xử với mình."},
+  {id:"ED02",text:"Tôi cảm thấy khó ổn định cảm xúc khi không nhận được sự quan tâm từ người đó."},
+  {id:"ED03",text:"Tôi gặp khó khăn khi tạo khoảng cách cảm xúc với người đó, ngay cả khi mối quan hệ khiến tôi mệt mỏi."}
+ ]
+}
+];
+
+const likert=[
+"Hoàn toàn không đồng ý",
+"Không đồng ý",
+"Trung lập",
+"Đồng ý",
+"Hoàn toàn đồng ý"
+];
+
+let step=0;
+let consent=false;
+let answers={};
+let sending=false;
+let errorMessage="";
+const app=document.getElementById("app");
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
+ })[c]);
+}
+
+function render(){
+ if(step===0){
+  app.innerHTML=`
+  <div class="center">
+   <div class="eyebrow">PSYCHOLOGICAL RESEARCH · PILOT</div>
+   <div class="halo"></div>
+   <h1>BEYOND<br>THE SIGNALS</h1>
+   <p>Khảo sát về trải nghiệm tình cảm, sự nhạy cảm với từ chối và lệ thuộc cảm xúc ở người trẻ.</p>
+  </div>
+  <div class="panel">
+   <div class="eyebrow">ĐỒNG THUẬN THAM GIA</div>
+   <p>Đây là khảo sát thử nghiệm. Việc tham gia là tự nguyện. Bạn có thể dừng trước khi gửi câu trả lời. Không yêu cầu thông tin định danh cá nhân.</p>
+   <label class="option">
+    <input type="checkbox" id="agree" ${consent?"checked":""}>
+    Tôi từ 18 tuổi trở lên và đồng ý tham gia.
+   </label>
+  </div>
+  <div class="center">
+   <button class="primary" id="start" ${consent?"":"disabled"}>Bắt đầu khảo sát →</button>
+  </div>`;
+  document.getElementById("agree").onchange=e=>{
+   consent=e.target.checked;render();
+  };
+  document.getElementById("start").onclick=()=>{
+   step=1;render();
+  };
+  return;
+ }
+
+ if(step===5 || step===6){
+  app.innerHTML=`
+  <div class="center" style="padding:80px 0">
+   <div style="font-size:60px;text-shadow:0 0 30px white">✧</div>
+   <h1>${step===5?"THANK YOU.":"CẢM ƠN BẠN."}</h1>
+   <p>${step===5
+     ?(SCRIPT_URL?"Câu trả lời đã được gửi thành công.":"Bạn đã hoàn thành bản xem thử. Dữ liệu chưa được lưu.")
+     :"Bạn chưa thuộc nhóm đối tượng của khảo sát này."}</p>
+   <button class="secondary" id="restart">Quay lại trang đầu</button>
+  </div>`;
+  document.getElementById("restart").onclick=()=>{
+   step=0;consent=false;answers={};render();
+  };
+  return;
+ }
+
+ const section=sections[step-1];
+ let html=`
+ <div class="eyebrow">KHẢO SÁT · ${String(step).padStart(2,"0")} / 04</div>
+ <div class="progress"><div style="width:${step/4*100}%"></div></div>
+ <h2>${escapeHTML(section.title)}</h2>
+ <p>${escapeHTML(section.description)}</p>`;
+
+ section.questions.forEach((q,i)=>{
+  html+=`<div class="question">${i+1}. ${escapeHTML(q.text)}</div>`;
+  (q.options||likert).forEach((option,j)=>{
+   const value=q.options?option:String(j+1);
+   html+=`
+   <label class="option">
+    <input type="radio" name="${q.id}" value="${escapeHTML(value)}"
+    ${answers[q.id]===value?"checked":""}>
+    <span>${escapeHTML(option)}</span>
+   </label>`;
+  });
+ });
+
+ if(errorMessage)html+=`<div class="error">${escapeHTML(errorMessage)}</div>`;
+ html+=`
+ <div class="actions">
+  <button class="secondary" id="back">← Quay lại</button>
+  <button class="primary" id="next" ${sending?"disabled":""}>
+   ${sending?"Đang gửi...":step===4?"Gửi khảo sát →":"Tiếp tục →"}
+  </button>
+ </div>`;
+ app.innerHTML=html;
+
+ app.querySelectorAll('input[type="radio"]').forEach(input=>{
+  input.onchange=()=>{
+   answers[input.name]=input.value;
+   errorMessage="";
+  };
+ });
+
+ document.getElementById("back").onclick=()=>{
+  if(sending)return;
+  step--;errorMessage="";render();
+ };
+
+ document.getElementById("next").onclick=async()=>{
+  if(sending)return;
+  if(section.questions.some(q=>!answers[q.id])){
+   errorMessage="Vui lòng trả lời đầy đủ các câu hỏi.";
+   render();return;
+  }
+  if(step===1 &&
+   (answers.AGE==="Dưới 18 tuổi"||
+    answers.AGE==="Trên 30 tuổi"||
+    answers.EXP==="Không")){
+    step=6;render();return;
+  }
+  if(step<4){step++;errorMessage="";render();return;}
+  await submitSurvey();
+ };
+}
+
+async function submitSurvey(){
+ if(!SCRIPT_URL){step=5;render();return;}
+ sending=true;errorMessage="";render();
+ try{
+  // Apps Script Web App nhận form POST.
+  const form=new URLSearchParams();
+  form.set("payload",JSON.stringify({
+   surveyVersion:"pilot-1.0",
+   consent:true,
+   answers
+  }));
+  // no-cors không cho phép xác minh kết quả lưu.
+  // Không hiển thị thành công khi chưa xác minh được.
+  await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",body:form});
+  errorMessage="Yêu cầu đã được gửi, nhưng trình duyệt không thể xác minh Google Sheets đã lưu dữ liệu. Hãy kiểm tra bảng tính trước khi coi là hoàn tất.";
+ }catch(e){
+  errorMessage="Không thể gửi dữ liệu. Vui lòng thử lại.";
+ }
+ sending=false;render();
+}
+render();
+</script>
 </body>
 </html>
